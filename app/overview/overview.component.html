@@ -1,0 +1,27 @@
+<GridLayout #container
+  rows="auto, auto, *">
+
+  <!-- Row 1: The custom action bar -->
+  <GridLayout
+    row="0"
+    columns="44, *, auto"
+    class="action-bar-custom">
+    <Label
+      col="1"
+      text="Racket'O'Meter"></Label>
+    
+    <!-- Wrap the image in a StackLayout to give it a bigger tap target -->
+    <StackLayout
+      col="2"
+      (tap)="showMenu()">
+      <Image
+        src="res://menu"
+        stretch="none"></Image>
+    </StackLayout>
+  </GridLayout>
+
+  <ActivityIndicator
+    [busy]="isLoading"
+    row="2"></ActivityIndicator>
+
+</GridLayout>
