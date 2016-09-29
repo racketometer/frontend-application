@@ -12,7 +12,6 @@ import { LoginService, OverviewService, setHintColor } from "../shared";
   selector: "gr-overview",
   templateUrl: "overview/overview.component.html",
   styleUrls: ["overview/overview-common.css", "overview/overview.component.css"],
-  providers: [OverviewService],
 })
 export class OverviewComponent implements OnInit {
   grocery: string = "";

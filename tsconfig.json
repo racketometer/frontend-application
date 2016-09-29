@@ -8,12 +8,16 @@
         "experimentalDecorators": true,
         "removeComments": false,
         "emitDecoratorMetadata": true,
-        "noEmitOnError": true
+        "noEmitOnError": true,
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "types": [
+            "../types/node",
+            "../types/isomorphic-fetch"
+        ]
     },
     "files": [
-        "./types/node.d.ts",
-        "./types/isomorphic-fetch.d.ts",
-        "./typings/index.d.ts",
         "./references.d.ts",
         "./app/main.ts",
         "./app/tests/index.ts"
