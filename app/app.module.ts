@@ -7,8 +7,8 @@ import { NgModule } from "@angular/core";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
-import { APOLLO_PROVIDERS, defaultApolloClient } from "angular2-apollo";
-import ApolloClient, { createNetworkInterface } from "apollo-client";
+import ApolloClient, { createNetworkInterface } from 'apollo-client';
+import { ApolloModule } from 'angular2-apollo';
 
 import { authProviders, appRoutes } from "./app.routes";
 import { AppComponent } from "./app.component";
@@ -23,7 +23,7 @@ import { LoginModule } from "./login/Login.module";
 import { OverviewModule } from "./overview/overview.module";
 
 const client = new ApolloClient({
-  networkInterface: createNetworkInterface('http://192.168.84.1:8080/graphql'),
+  networkInterface: createNetworkInterface('http://178.157.248.151:8080/graphql'),
 })
 
 setStatusBarColors();
@@ -33,8 +33,6 @@ setStatusBarColors();
     LoginService,
     OverviewService,
     authProviders,
-    APOLLO_PROVIDERS,
-    defaultApolloClient(client),
   ],
   imports: [
     NativeScriptModule,
@@ -42,10 +40,9 @@ setStatusBarColors();
     NativeScriptRouterModule.forRoot(appRoutes),
     LoginModule,
     OverviewModule,
+    ApolloModule.withClient(client)
   ],
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
