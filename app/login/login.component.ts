@@ -37,9 +37,8 @@ export class LoginComponent implements OnInit {
     private page: Page
   ) {
     this.user = new User();
-    this.user.email = "ngconf@telerik33.com";
-    this.user.password = "password";
-
+    this.user.email = "johnny@test.dk";
+    this.user.password = "1234";
   }
 
   ngOnInit() {
@@ -58,8 +57,10 @@ export class LoginComponent implements OnInit {
 
     this.isAuthenticating = true;
     if (this.isLoggingIn) {
+      console.log("login");
       this.login();
     } else {
+      console.log("signup");
       this.signUp();
     }
   }
@@ -74,9 +75,9 @@ export class LoginComponent implements OnInit {
       .then((data) => {
         console.log(JSON.stringify(data));
         this.isAuthenticating = false;
-        if (data.joinedAt != null) {
+        if (data != null) {
           console.log("route");
-          this.router.navigate(["/"]);
+          this.router.navigate(["bluetooth"]);
         }
       })
       .catch((message) => {

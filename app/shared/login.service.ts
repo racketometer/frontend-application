@@ -51,12 +51,12 @@ export class LoginService {
   }
 
   public login(user: ILogin): Promise<User> {
+    console.log("trying to log in with ", user);
     return this.angularApollo.query({
         query: gql`
           query getLogin($email: String!, $password: String!) {
             login(email: $email, password: $password) {
-              age
-              joinedAt
+              displayName
             }
           }
         `,
