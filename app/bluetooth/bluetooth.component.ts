@@ -11,12 +11,12 @@ import * as bluetooth from "nativescript-bluetooth";
 import { alert, setHintColor} from "../shared";
 
 @Component({
-  selector: "gr-bluetooth",
+  selector: "rom-bluetooth",
   templateUrl: "bluetooth/bluetooth.component.html",
   styleUrls: ["bluetooth/bluetooth.css"],
 })
 export class BluetoothComponent implements OnInit {
-  periperhal: ObservableArray<bluetooth.Peripheral>;
+  peripherals: ObservableArray<bluetooth.Peripheral>;
   scanBtn: Button;
 
   @ViewChild("scanButton") scanButton: ElementRef;
@@ -24,7 +24,7 @@ export class BluetoothComponent implements OnInit {
   constructor(
     private router: Router
   ) {
-    this.periperhal = new ObservableArray<bluetooth.Peripheral>();
+    this.peripherals = new ObservableArray<bluetooth.Peripheral>();
   }
 
   ngOnInit() {
@@ -33,13 +33,13 @@ export class BluetoothComponent implements OnInit {
 
   public scan(): void {
     this.scanBtn.isEnabled = false;
-    this.periperhal.length = 0;
+    this.peripherals.length = 0;
     this.permission().then(() => 
       bluetooth.startScanning({
         serviceUUIDs: [],
         seconds: 5,
         onDiscovered: (peripheral: bluetooth.Peripheral) => {
-          this.periperhal.push(peripheral);
+          this.peripherals.push(peripheral);
         }
       })
     ).catch((err) => {
@@ -50,8 +50,7 @@ export class BluetoothComponent implements OnInit {
   }
 
   public onPeripheralTap(event: ItemEventData): void {
-    console.log("reading: " + this.isReading)
-    let item  = this.periperhal.getItem(event.index);
+    const item  = this.peripherals.getItem(event.index);
     bluetooth.connect({
       UUID: item.UUID,
       onConnected: (peripheral) => {
@@ -67,10 +66,10 @@ export class BluetoothComponent implements OnInit {
   private read(ID: string): void {
     bluetooth.read({
       peripheralUUID: ID,
-      serviceUUID: 'F000AA00-0451-4000-B000-000000000000',
-      characteristicUUID: "F000AA01-0451-4000-B000-000000000000" // 3?
+      serviceUUID: "F000AA00-0451-4000-B000-000000000000",
+      characteristicUUID: "F000AA01-0451-4000-B000-000000000000"
     }).then( (result) => {
-      console.log(JSON.stringify(result));  
+      console.log(JSON.stringify(result));
     }, (err) => {
       console.log("read error: " + err);
     });

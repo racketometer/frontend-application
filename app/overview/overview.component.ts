@@ -9,7 +9,7 @@ import * as SocialShare from "nativescript-social-share";
 import { LoginService, OverviewService, setHintColor } from "../shared";
 
 @Component({
-  selector: "gr-overview",
+  selector: "rom-overview",
   templateUrl: "overview/overview.component.html",
   styleUrls: ["overview/overview-common.css", "overview/overview.component.css"],
 })

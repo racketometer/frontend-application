@@ -13,7 +13,7 @@ import gql from "graphql-tag";
 import { alert, setHintColor, LoginService, User } from "../shared";
 
 @Component({
-  selector: "gr-login",
+  selector: "rom-login",
   templateUrl: "login/login.component.html",
   styleUrls: ["login/login-common.css", "login/login.component.css"],
 })
@@ -57,10 +57,8 @@ export class LoginComponent implements OnInit {
 
     this.isAuthenticating = true;
     if (this.isLoggingIn) {
-      console.log("login");
       this.login();
     } else {
-      console.log("signup");
       this.signUp();
     }
   }
@@ -73,10 +71,8 @@ export class LoginComponent implements OnInit {
 
     this.loginService.login(this.user)
       .then((data) => {
-        console.log(JSON.stringify(data));
         this.isAuthenticating = false;
-        if (data != null) {
-          console.log("route");
+        if (data) {
           this.router.navigate(["bluetooth"]);
         }
       })
