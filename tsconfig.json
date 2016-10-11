@@ -10,13 +10,12 @@
         "emitDecoratorMetadata": true,
         "noEmitOnError": true,
         "typeRoots": [
-            "node_modules/@types"
-        ],
-        "types": [
-            "../references"
+            "./node_modules/@types",
+            "./types"
         ]
     },
     "files": [
+        "./references.d.ts",
         "./app/main.ts",
         "./app/tests/index.ts"
     ],

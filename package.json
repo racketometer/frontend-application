@@ -27,7 +27,7 @@
   "scripts": {
     "tslint": "tslint \"app/**/*.ts\"",
     "android": "tns run android --watch --bundle --live-edit",
-    "ios": "tns livesync ios --emulator"
+    "ios": "tns livesync ios --watch --emulator --bundle"
   },
   "dependencies": {
     "@angular/common": "2.0.1",
@@ -53,18 +53,15 @@
   },
   "devDependencies": {
     "@types/chai": "3.4.34",
-    "@types/es6-promise": "0.0.32",
-    "@types/isomorphic-fetch": "0.0.31",
-    "@types/node": "6.0.45",
     "babel-traverse": "6.16.0",
     "babel-types": "6.16.0",
     "babylon": "6.11.4",
     "codelyzer": "0.0.28",
     "filewalker": "0.1.3",
     "jasmine-core": "2.5.2",
+    "karma": "1.3.0",
     "karma-jasmine": "1.0.2",
     "karma-nativescript-launcher": "0.4.0",
-    "karma": "1.3.0",
     "lazy": "1.0.11",
     "nativescript-dev-typescript": "0.3.2",
     "nativescript-dev-webpack": "0.0.20",
