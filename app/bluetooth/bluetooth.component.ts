@@ -50,6 +50,7 @@ export class BluetoothComponent implements OnInit {
   }
 
   public onPeripheralTap(event: ItemEventData): void {
+    console.log("reading: " + this.isReading)
     let item  = this.periperhal.getItem(event.index);
     bluetooth.connect({
       UUID: item.UUID,
@@ -66,13 +67,11 @@ export class BluetoothComponent implements OnInit {
   private read(ID: string): void {
     bluetooth.read({
       peripheralUUID: ID,
-      serviceUUID: 'F000AA11-0451-4000-B000-000000000000',
-      characteristicUUID: "0x2D"
-    }).then(function(result) {
-      // fi. a heartrate monitor value (Uint8) can be retrieved like this:
-      var data = new Uint8Array(result.value);
-      console.log("Your heartrate is: " + data[1] + " bpm");  
-    }).then(function(err) {
+      serviceUUID: 'F000AA00-0451-4000-B000-000000000000',
+      characteristicUUID: "F000AA01-0451-4000-B000-000000000000" // 3?
+    }).then( (result) => {
+      console.log(JSON.stringify(result));  
+    }, (err) => {
       console.log("read error: " + err);
     });
   }
