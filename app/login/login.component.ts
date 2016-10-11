@@ -13,7 +13,7 @@ import gql from "graphql-tag";
 import { alert, setHintColor, LoginService, User } from "../shared";
 
 @Component({
-  selector: "gr-login",
+  selector: "rom-login",
   templateUrl: "login/login.component.html",
   styleUrls: ["login/login-common.css", "login/login.component.css"],
 })
@@ -37,9 +37,8 @@ export class LoginComponent implements OnInit {
     private page: Page
   ) {
     this.user = new User();
-    this.user.email = "ngconf@telerik33.com";
-    this.user.password = "password";
-
+    this.user.email = "johnny@test.dk";
+    this.user.password = "1234";
   }
 
   ngOnInit() {
@@ -72,11 +71,9 @@ export class LoginComponent implements OnInit {
 
     this.loginService.login(this.user)
       .then((data) => {
-        console.log(JSON.stringify(data));
         this.isAuthenticating = false;
-        if (data.joinedAt != null) {
-          console.log("route");
-          this.router.navigate(["/"]);
+        if (data) {
+          this.router.navigate(["bluetooth"]);
         }
       })
       .catch((message) => {

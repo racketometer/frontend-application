@@ -1,0 +1,11 @@
+<StackLayout>
+    <button #scanButton (tap)="scan()" text="Scan">Scan</button>        
+    <ListView [items]="peripherals" (itemTap)="onPeripheralTap($event)">
+        <template let-item="item">
+            <StackLayout>
+                <Label [text]='item.name'></Label>
+                <Label [text]='"[" + item.UUID +"]"'></Label>
+            </StackLayout>
+        </template>
+    </ListView>
+</StackLayout>
