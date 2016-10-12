@@ -38,7 +38,7 @@ export class LoginService {
         variables: {
           email: user.email,
           password: user.password,
-        }
+        },
       }).then(({ data }) => {
         console.log(JSON.stringify(data));
         if (data != null) {
@@ -51,7 +51,8 @@ export class LoginService {
   }
 
   public login(user: ILogin): Promise<User> {
-    console.log("trying to log in with ", user);
+    console.log(`LoginService.login(): Email: '${user.email}' Pass: '${user.password}'`);
+
     return this.angularApollo.query({
         query: gql`
           query getLogin($email: String!, $password: String!) {
@@ -63,15 +64,15 @@ export class LoginService {
         variables: {
           email: user.email,
           password: user.password,
-        }
-      }).then(({ data }) => {
-        console.log(JSON.stringify(data));
-        if (data != null) {
+        },
+      }).then((result) => {
+        console.log("LoginService.login(): Success, data:", JSON.stringify(result));
+        if (result.data != null) {
           this.token = "2131";
-          return data.login;
+          return result.data.login;
         }
       }).catch((e, c) => {
-        console.error("error", e, c);
+        console.error("LoginService.login(): Error: ", e, c);
         return c;
       });
   }
