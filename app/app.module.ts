@@ -1,31 +1,30 @@
-import { 
-  platformNativeScriptDynamic, 
-  NativeScriptModule 
-} from "nativescript-angular/platform";
+import { NativeScriptModule } from "nativescript-angular/platform";
 
 import { NgModule } from "@angular/core";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
-import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
-import ApolloClient, { createNetworkInterface } from 'apollo-client';
-import { ApolloModule } from 'angular2-apollo';
+import ApolloClient, { createNetworkInterface } from "apollo-client";
+import { ApolloModule } from "angular2-apollo";
 
 import { authProviders, appRoutes } from "./app.routes";
 import { AppComponent } from "./app.component";
 
-import { 
-  setStatusBarColors, 
-  LoginService, 
-  OverviewService
+import {
+  setStatusBarColors,
+  LoginService,
+  OverviewService,
 } from "./shared";
 
 import { LoginModule } from "./login/Login.module";
 import { OverviewModule } from "./overview/overview.module";
 import { BluetoothModule } from "./bluetooth/bluetooth.module";
 
+declare var process: any;
+const IP = process.env.IP;
+
 const client = new ApolloClient({
-  networkInterface: createNetworkInterface('http://192.168.1.46:8080/graphql'),
-})
+  networkInterface: createNetworkInterface(`http://${IP}:8080/graphql`),
+});
 
 setStatusBarColors();
 
@@ -42,9 +41,9 @@ setStatusBarColors();
     LoginModule,
     OverviewModule,
     BluetoothModule,
-    ApolloModule.withClient(client)
+    ApolloModule.withClient(client),
   ],
   declarations: [AppComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
