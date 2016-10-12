@@ -94,7 +94,7 @@ export class LoginComponent implements OnInit {
     this.setTextFieldColors();
     const mainContainer = this.mainContainer.nativeElement as View;
     mainContainer.animate({
-      backgroundColor: this.isLoggingIn ? new Color("white") : new Color("#301217"),
+      backgroundColor: this.isLoggingIn ? new Color("white") : new Color("#220c08"),
       duration: 200,
     });
   }
