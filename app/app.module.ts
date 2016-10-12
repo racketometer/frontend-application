@@ -7,15 +7,15 @@ import { NgModule } from "@angular/core";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
-import ApolloClient, { createNetworkInterface } from 'apollo-client';
-import { ApolloModule } from 'angular2-apollo';
+import ApolloClient, { createNetworkInterface } from "apollo-client";
+import { ApolloModule } from "angular2-apollo";
 
 import { authProviders, appRoutes } from "./app.routes";
 import { AppComponent } from "./app.component";
 
-import { 
-  setStatusBarColors, 
-  LoginService, 
+import {
+  setStatusBarColors,
+  LoginService,
   OverviewService
 } from "./shared";
 
@@ -24,7 +24,7 @@ import { OverviewModule } from "./overview/overview.module";
 import { BluetoothModule } from "./bluetooth/bluetooth.module";
 
 const client = new ApolloClient({
-  networkInterface: createNetworkInterface('http://192.168.1.46:8080/graphql'),
+  networkInterface: createNetworkInterface("http://192.168.1.46:8080/graphql"),
 })
 
 setStatusBarColors();

@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
-import { Button } from "ui/button";
+import { Animation } from "ui/animation";
+import { Page } from "ui/page";
 import { connectionType, getConnectionType } from "connectivity";
 import { prompt } from "ui/dialogs";
 import { ItemEventData } from "ui/list-view";
@@ -13,28 +14,27 @@ import { alert, setHintColor} from "../shared";
 @Component({
   selector: "rom-bluetooth",
   templateUrl: "bluetooth/bluetooth.component.html",
-  styleUrls: ["bluetooth/bluetooth.css"],
+  styleUrls: ["bluetooth/bluetooth-common.css"],
 })
 export class BluetoothComponent implements OnInit {
   peripherals: ObservableArray<bluetooth.Peripheral>;
-  scanBtn: Button;
-
-  @ViewChild("scanButton") scanButton: ElementRef;
+  isScanning = false;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private page: Page
   ) {
     this.peripherals = new ObservableArray<bluetooth.Peripheral>();
   }
 
   ngOnInit() {
-    this.scanBtn = this.scanButton.nativeElement as Button;
+    this.page.actionBarHidden = true;
   }
 
   public scan(): void {
-    this.scanBtn.isEnabled = false;
+    this.isScanning = true;
     this.peripherals.length = 0;
-    this.permission().then(() => 
+    this.permission().then(() =>
       bluetooth.startScanning({
         serviceUUIDs: [],
         seconds: 5,
@@ -45,7 +45,7 @@ export class BluetoothComponent implements OnInit {
     ).catch((err) => {
       console.log("scan: catch", err);
     }).then(() => {
-      this.scanBtn.isEnabled = true;
+      this.isScanning = false;
     });
   }
 
@@ -62,6 +62,39 @@ export class BluetoothComponent implements OnInit {
       }
     });
   }
+
+  //  showSensorContent() {
+  //   let initialContainer = <View>this.initialContainer.nativeElement;
+  //   let mainContainer = <View>this.mainContainer.nativeElement;
+  //   let logoContainer = <View>this.logoContainer.nativeElement;
+  //   let formControls = <View>this.formControls.nativeElement;
+  //   let signUpStack = <View>this.signUpStack.nativeElement;
+  //   let animations = [];
+
+  //   // Fade out the initial content over one half second
+  //   initialContainer.animate({
+  //     opacity: 0,
+  //     duration: 500
+  //   }).then(function () {
+  //     // After the animation completes, hide the initial container and
+  //     // show the main container and logo. The main container and logo will
+  //     // not immediately appear because their opacity is set to 0 in CSS.
+  //     initialContainer.style.visibility = "collapse";
+  //     mainContainer.style.visibility = "visible";
+  //     logoContainer.style.visibility = "visible";
+
+  //     // Fade in the main container and logo over one half second.
+  //     animations.push({ target: mainContainer, opacity: 1, duration: 500 });
+  //     animations.push({ target: logoContainer, opacity: 1, duration: 500 });
+
+  //     // Slide up the form controls and sign up container.
+  //     animations.push({ target: signUpStack, translate: { x: 0, y: 0 }, opacity: 1, delay: 500, duration: 150 });
+  //     animations.push({ target: formControls, translate: { x: 0, y: 0 }, opacity: 1, delay: 650, duration: 150 });
+
+  //     // Kick off the animation queue
+  //     new Animation(animations, false).play();
+  //   });
+  //  }
 
   private read(ID: string): void {
     bluetooth.read({
