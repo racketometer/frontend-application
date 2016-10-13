@@ -1,14 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { Button } from "ui/button";
-import { connectionType, getConnectionType } from "connectivity";
-import { prompt } from "ui/dialogs";
 import { ItemEventData } from "ui/list-view";
 import { ObservableArray } from "data/observable-array";
 
 import * as bluetooth from "nativescript-bluetooth";
-
-import { alert, setHintColor} from "../shared";
 
 @Component({
   selector: "rom-bluetooth",
@@ -16,10 +12,10 @@ import { alert, setHintColor} from "../shared";
   styleUrls: ["bluetooth/bluetooth.css"],
 })
 export class BluetoothComponent implements OnInit {
-  peripherals: ObservableArray<bluetooth.Peripheral>;
-  scanBtn: Button;
+  public peripherals: ObservableArray<bluetooth.Peripheral>;
+  public scanBtn: Button;
 
-  @ViewChild("scanButton") scanButton: ElementRef;
+  @ViewChild("scanButton") public scanButton: ElementRef;
 
   constructor(
     private router: Router
@@ -27,20 +23,20 @@ export class BluetoothComponent implements OnInit {
     this.peripherals = new ObservableArray<bluetooth.Peripheral>();
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.scanBtn = this.scanButton.nativeElement as Button;
   }
 
   public scan(): void {
     this.scanBtn.isEnabled = false;
     this.peripherals.length = 0;
-    this.permission().then(() => 
+    this.permission().then(() =>
       bluetooth.startScanning({
         serviceUUIDs: [],
         seconds: 5,
         onDiscovered: (peripheral: bluetooth.Peripheral) => {
           this.peripherals.push(peripheral);
-        }
+        },
       })
     ).catch((err) => {
       console.log("scan: catch", err);
@@ -59,7 +55,7 @@ export class BluetoothComponent implements OnInit {
       },
       onDisconnected: (peripheral) => {
         console.log("disconnected");
-      }
+      },
     });
   }
 
@@ -67,7 +63,7 @@ export class BluetoothComponent implements OnInit {
     bluetooth.read({
       peripheralUUID: ID,
       serviceUUID: "F000AA00-0451-4000-B000-000000000000",
-      characteristicUUID: "F000AA01-0451-4000-B000-000000000000"
+      characteristicUUID: "F000AA01-0451-4000-B000-000000000000",
     }).then( (result) => {
       console.log(JSON.stringify(result));
     }, (err) => {

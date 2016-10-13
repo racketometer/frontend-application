@@ -7,13 +7,11 @@ import { LoginService } from "./shared";
 export class AuthGuard implements CanActivate {
   constructor(private router: Router, private loginService: LoginService) { }
 
-  canActivate() {
+  public canActivate() {
     if (this.loginService.isLoggedIn) {
       return true;
     }
-    else {
-      this.router.navigate(["/login"]);
-      return false;
-    }
+    this.router.navigate(["/login"]);
+    return false;
   }
 }
