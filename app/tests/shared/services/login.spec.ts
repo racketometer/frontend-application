@@ -1,7 +1,6 @@
 import "reflect-metadata";
 import { LoginService } from "../../../shared";
 import { Angular2Apollo } from "angular2-apollo";
-import ApolloClient, { createNetworkInterface } from "apollo-client";
 
 const apolloServiceMock = {
   query: (someObj: any) => { return { age: "2" }; },
@@ -13,10 +12,9 @@ declare var it: any;
 declare var spyOn: any;
 declare var beforeEach: any;
 
-
 describe("Token validation", function() {
-  let service = new LoginService(apolloServiceMock);
-  let moq = {
+  const service = new LoginService(apolloServiceMock);
+  const moq = {
     email: "boho@test.dk",
     password: "1",
   };

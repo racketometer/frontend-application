@@ -6,10 +6,10 @@ import { BluetoothComponent } from "./bluetooth.component";
 @NgModule({
   imports: [
     NativeScriptModule,
-    bluetoothRouting
+    bluetoothRouting,
   ],
   declarations: [
-    BluetoothComponent
-  ]
+    BluetoothComponent,
+  ],
 })
 export class BluetoothModule {}

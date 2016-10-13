@@ -1,9 +1,9 @@
 import { AuthGuard } from "./auth-guard.service";
 
 export const authProviders = [
-  AuthGuard
+  AuthGuard,
 ];
 
 export const appRoutes = [
-  { path: "", redirectTo: "/login", pathMatch: "full" }
+  { path: "", redirectTo: "/login", pathMatch: "full" },
 ];
