@@ -4,6 +4,6 @@ export function alert(message: string) {
   return dialogsModule.alert({
     title: "Racket'O'Meter",
     okButtonText: "OK",
-    message: message
+    message: message,
   });
 }

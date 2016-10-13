@@ -6,7 +6,7 @@ declare var expect: any;
 declare var it: any;
 
 describe("Email validation", function() {
-  let user = new User();
+  const user = new User();
 
   it("Should reject an empty email address", function () {
     user.email = "";
