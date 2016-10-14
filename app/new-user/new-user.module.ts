@@ -8,7 +8,7 @@ import { NewUserComponent } from "./new-user.component";
   imports: [
     NativeScriptModule,
     NativeScriptFormsModule,
-    newUserRouting
+    newUserRouting,
   ],
   declarations: [
     NewUserComponent,
