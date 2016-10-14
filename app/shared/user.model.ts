@@ -9,7 +9,7 @@ export class User {
   public birthday: Date;
   public password?: string;
   public startedPlaying: Date;
-  public allowsSharing: boolean;
+  public allowSharing: boolean;
   public isConsultant?: boolean;
   public isCoach?: boolean;
   public createdAt?: string;
@@ -21,6 +21,18 @@ export class User {
    */
   public isValidEmail(): boolean {
     return validate(this.email);
+  }
+
+  /**
+   * Validate user model.
+   */
+  public isValid(): boolean {
+    return (
+      !!this.firstName ||
+      !!this.lastName ||
+      this.isValidEmail() ||
+      !!this.birthday
+    );
   }
 
   /**
@@ -38,6 +50,7 @@ export class User {
       Email:    ${this.email}
       Birthday: ${this.birthday}
       Started:  ${this.startedPlaying}
+      Share:    ${this.allowSharing}
     `;
   }
 }

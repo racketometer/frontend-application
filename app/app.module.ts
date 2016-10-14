@@ -1,10 +1,11 @@
-import { NativeScriptModule } from "nativescript-angular/platform";
-
 import { NgModule } from "@angular/core";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
+import { NativeScriptModule } from "nativescript-angular/platform";
 
 import ApolloClient, { createNetworkInterface } from "apollo-client";
 import { ApolloModule } from "angular2-apollo";
+
+import { NativeScriptServicesModule } from "./nativescript-services";
 
 import { authProviders, appRoutes } from "./app.routes";
 import { AppComponent } from "./app.component";
@@ -13,6 +14,7 @@ import {
   setStatusBarColors,
   LoginService,
   OverviewService,
+  UserService,
 } from "./shared";
 
 import { LoginModule } from "./login/Login.module";
@@ -34,16 +36,18 @@ setStatusBarColors();
     LoginService,
     OverviewService,
     authProviders,
+    UserService,
   ],
   imports: [
+    ApolloModule.withClient(client),
+    BluetoothModule,
+    LoginModule,
     NativeScriptModule,
     NativeScriptRouterModule,
     NativeScriptRouterModule.forRoot(appRoutes),
-    LoginModule,
+    NativeScriptServicesModule,
     NewUserModule,
     OverviewModule,
-    BluetoothModule,
-    ApolloModule.withClient(client),
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],

@@ -1,5 +1,5 @@
 .background {
-  background-image: url("res://bg_login");
+  background-image: url("res://bg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -20,18 +20,14 @@
   height: 120;
 }
 
-.allow-sharing-label, .allow-sharing-switch {
-  vertical-align: center;
-}
-
-.allow-sharing-label {
-  horizontal-align: left;
-}
-
-Button, TextField, DatePicker, Switch, .birthday-label {
+Button, TextField, DatePicker, Switch, .birthday-label, .allow-sharing-label {
   margin-left: 16;
   margin-right: 16;
   margin-bottom: 10;
+}
+
+.birthday-label {
+  margin-bottom: 0;
 }
 
 .submit-button {

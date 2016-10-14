@@ -1,14 +1,13 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { Color } from "color";
-import { connectionType, getConnectionType } from "connectivity";
-import { Animation } from "ui/animation";
-import { View } from "ui/core/view";
-import { prompt } from "ui/dialogs";
 import { Page } from "ui/page";
-import { TextField } from "ui/text-field";
 
-import { alert, setHintColor, LoginService, User } from "../shared";
+import { DialogService } from "../nativescript-services";
+
+import {
+  User,
+  UserService,
+} from "../shared";
 
 @Component({
   selector: "rom-new-user",
@@ -17,32 +16,60 @@ import { alert, setHintColor, LoginService, User } from "../shared";
 })
 export class NewUserComponent implements OnInit {
   public user: User;
-  public yearsOfExperience: number;
+  public yearsOfExperience: string;
 
   constructor(
     private router: Router,
-    private page: Page
+    private page: Page,
+    private userService: UserService,
+    private dialogService: DialogService
   ) {
   }
 
   public ngOnInit() {
     this.page.actionBarHidden = true;
     this.user = new User();
+    this.user.allowSharing = false;
   }
 
+  /**
+   * Submit form.
+   */
   public submit(): void {
+    if (!this.isFormValid()) {
+      this.dialogService.alert("Please, fill in all inputs");
+      return;
+    }
+    this.setStartedPlaying();
+
+    this.userService.newUser(this.user)
+      .then(() => {
+        this.router.navigate(["bluetooth"]);
+      })
+      .catch((err) => {
+        this.dialogService.alert("Email in use");
+      });
+  }
+
+  /**
+   * Set started playing date from years of experience.
+   */
+  private setStartedPlaying(): void {
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear();
     const currentMonth = currentDate.getMonth();
-    this.user.startedPlaying = new Date(currentYear - this.yearsOfExperience, currentMonth);
-
-    console.log(this.user, this.yearsOfExperience);
+    this.user.startedPlaying = new Date(currentYear - parseInt(this.yearsOfExperience, 10), currentMonth);
   }
 
-  public startBackgroundAnimation(background): void {
-    background.animate({
-      scale: { x: 1.0, y: 1.0 },
-      duration: 10000,
-    });
+  /**
+   * Validate form inputs.
+   */
+  private isFormValid(): boolean {
+    const yearsOfExperience = parseInt(this.yearsOfExperience, 10);
+    if (isNaN(yearsOfExperience)) {
+      return false;
+    }
+
+    return this.user.isValid();
   }
 }
