@@ -21,6 +21,8 @@ export class LoginService {
   }
 
   public register(user: User): Promise<User> {
+    console.log(`LoginService.register(): Email: '${user.email}' Pass: '${user.password}'`);
+
     return this.angularApollo.mutate({
       mutation: gql`
           mutation createUser($email: String!, $password: String!) {
@@ -34,19 +36,20 @@ export class LoginService {
         email: user.email,
         password: user.password,
       },
-    }).then(({ data }) => {
-      console.log(JSON.stringify(data));
-      if (data != null) {
-        return data.user;
+    }).then((result) => {
+      console.log("LoginService.register(): Success: ", JSON.stringify(result));
+      if (result.data != null) {
+        return result.data.user;
       }
     }).catch((e, c) => {
-      console.error("error", e, c);
+      console.error("LoginService.register(): Error: ", e, c);
       return c;
     });
   }
 
   public login(user: ILogin): Promise<User> {
-    console.log("trying to log in with ", user);
+    console.log(`LoginService.login(): Email: '${user.email}' Pass: '${user.password}'`);
+
     return this.angularApollo.query({
       query: gql`
           query getLogin($email: String!, $password: String!) {
@@ -59,14 +62,14 @@ export class LoginService {
         email: user.email,
         password: user.password,
       },
-    }).then(({ data }) => {
-      console.log(JSON.stringify(data));
-      if (data != null) {
+    }).then((result) => {
+      console.log("LoginService.login(): Success: ", JSON.stringify(result));
+      if (result.data != null) {
         this.token = "2131";
-        return data.login;
+        return result.data.login;
       }
     }).catch((e, c) => {
-      console.error("error", e, c);
+      console.error("LoginService.login(): Error: ", e, c);
       return c;
     });
   }

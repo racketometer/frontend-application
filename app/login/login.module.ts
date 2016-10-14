@@ -11,7 +11,7 @@ import { LoginComponent } from "./login.component";
     loginRouting
   ],
   declarations: [
-    LoginComponent
-  ]
+    LoginComponent,
+  ],
 })
 export class LoginModule {}

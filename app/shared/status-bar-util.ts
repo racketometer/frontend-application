@@ -7,22 +7,25 @@ declare var UIStatusBarStyle: any;
 declare var UIApplication: any;
 declare var UIApplicationDelegate: any;
 
+/**
+ * Set status bar colors for iOS and Android.
+ */
 export function setStatusBarColors() {
   // Make the iOS status bar transparent with white text.
   // See https://github.com/burkeholland/nativescript-statusbar/issues/2
   // for details on the technique used.
-  if (application.ios) {
-    const AppDelegate = UIResponder.extend({
-      applicationDidFinishLaunchingWithOptions: function() {
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent;
-        return true;
-      }
-    }, {
-        name: "AppDelegate",
-        protocols: [UIApplicationDelegate]
-      });
-    application.ios.delegate = AppDelegate;
-  }
+  // if (application.ios) {
+  //   const AppDelegate = UIResponder.extend({
+  //     applicationDidFinishLaunchingWithOptions: function() {
+  //       UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent;
+  //       return true;
+  //     }
+  //   }, {
+  //       name: "AppDelegate",
+  //       protocols: [UIApplicationDelegate]
+  //     });
+  //   application.ios.delegate = AppDelegate;
+  // }
 
   // Make the Android status bar transparent.
   // See http://bradmartin.net/2016/03/10/fullscreen-and-navigation-bar-color-in-a-nativescript-android-app/

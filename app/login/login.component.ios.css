@@ -2,10 +2,6 @@
   height: 425;
   width: 300;
 }
-.initial-label {
-  font-size: 40;
-  letter-spacing: 0.2;
-}
 .main-label {
   color: #311217;
   font-size: 32;
@@ -24,13 +20,4 @@ TextField {
 }
 .sign-up-stack Label {
   height: 48;
-}
-
-/* A height of zero ensures that the AbsoluteLayout container doesn’t steal taps
-from the various button and text field controls that sit behind it. */
-.logo-container {
-  height: 0;
-}
-.logo-container Image {
-  top: -250;
 }
