@@ -16,6 +16,7 @@ import {
 } from "./shared";
 
 import { LoginModule } from "./login/Login.module";
+import { NewUserModule } from "./new-user/new-user.module";
 import { OverviewModule } from "./overview/overview.module";
 import { BluetoothModule } from "./bluetooth/bluetooth.module";
 
@@ -39,6 +40,7 @@ setStatusBarColors();
     NativeScriptRouterModule,
     NativeScriptRouterModule.forRoot(appRoutes),
     LoginModule,
+    NewUserModule,
     OverviewModule,
     BluetoothModule,
     ApolloModule.withClient(client),

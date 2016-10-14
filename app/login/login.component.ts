@@ -40,7 +40,12 @@ export class LoginComponent implements OnInit {
 
   public ngOnInit() {
     this.page.actionBarHidden = true;
-    this.showMainContent();
+    // this.showMainContent();
+    this.newUser();
+  }
+
+  public newUser(): void {
+    this.router.navigate(["newUser"]);
   }
 
   public focusPassword() {
