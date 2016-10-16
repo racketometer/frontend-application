@@ -27,11 +27,11 @@ export class User {
    * Validate user model.
    */
   public isValid(): boolean {
-    return (
-      !!this.firstName ||
-      !!this.lastName ||
-      this.isValidEmail() ||
-      !!this.birthday
+    return !!(
+      this.firstName &&
+      this.lastName &&
+      this.isValidEmail() &&
+      this.birthday
     );
   }
 

@@ -8,7 +8,7 @@ import { TextField } from "ui/text-field";
 import { GridLayout } from "ui/layouts/grid-layout";
 
 import { ConnectivityService, DialogService } from "../nativescript-services";
-import { setHintColor, LoginService, User } from "../shared";
+import { setHintColor, LoginService, Login } from "../shared";
 
 @Component({
   selector: "rom-login",
@@ -16,7 +16,7 @@ import { setHintColor, LoginService, User } from "../shared";
   styleUrls: ["login/login-common.css", "login/login.component.css"],
 })
 export class LoginComponent implements OnInit {
-  public user: User;
+  public user: Login;
   public isLoggingIn = true;
   public isAuthenticating = false;
 
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     private connectivityService: ConnectivityService,
     private dialogService: DialogService
   ) {
-    this.user = new User();
+    this.user = new Login();
     this.user.email = "johnny@test.dk";
     this.user.password = "1234";
   }
@@ -58,8 +58,8 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.isAuthenticating = true;
     if (this.isLoggingIn) {
+      this.isAuthenticating = true;
       this.login();
     } else {
       this.signUp();
@@ -138,20 +138,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.loginService.register(this.user)
-      .then(() => {
-        this.dialogService.alert("Your account was successfully created.");
-        this.isAuthenticating = false;
-        this.toggleDisplay();
-      })
-      .catch((message) => {
-        if (message.match(/same user/)) {
-          this.dialogService.alert("This email address is already in use.");
-        } else {
-          this.dialogService.alert("Unfortunately we were unable to create your account.");
-        }
-        this.isAuthenticating = false;
-      });
+    this.dialogService.alert("Registration is not possible at the time.");
   }
 
   private showMainContent() {
