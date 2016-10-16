@@ -1,0 +1,26 @@
+<GridLayout>
+
+  <GridLayout #background class="background"></GridLayout>
+
+  <StackLayout #mainContainer
+    class="main-container">
+    <GridLayout rows="*, *" class="ble-grid">
+      <StackLayout row="0">
+        <Label class="ble-list-header" text="Ready to go?"></Label>
+      </StackLayout>
+
+      <Button #scanButton 
+        row="1" 
+        class="session-btn" 
+        (tap)="start()" 
+        text="Start session">
+      </Button>
+    </GridLayout>
+  </StackLayout>
+
+  <StackLayout #sensorContainer
+    class="sensor-container">
+    <Label class="ble-list-header" text="Start a session"></Label>
+	</StackLayout>
+
+</GridLayout>

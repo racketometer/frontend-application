@@ -16,12 +16,14 @@ import { AppComponent } from "./app.component";
 import {
   setStatusBarColors,
   LoginService,
-  OverviewService
+  OverviewService,
+  BluetoothService,
 } from "./shared";
 
 import { LoginModule } from "./login/Login.module";
 import { OverviewModule } from "./overview/overview.module";
 import { BluetoothModule } from "./bluetooth/bluetooth.module";
+import { BluetoothDetailsModule } from "./bluetooth-details/bluetooth-details.module";
 
 const client = new ApolloClient({
   networkInterface: createNetworkInterface("http://192.168.1.46:8080/graphql"),
@@ -33,6 +35,7 @@ setStatusBarColors();
   providers: [
     LoginService,
     OverviewService,
+    BluetoothService,
     authProviders,
   ],
   imports: [
@@ -42,6 +45,7 @@ setStatusBarColors();
     LoginModule,
     OverviewModule,
     BluetoothModule,
+    BluetoothDetailsModule,
     ApolloModule.withClient(client)
   ],
   declarations: [AppComponent],

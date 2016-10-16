@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
       .then((data) => {
         this.isAuthenticating = false;
         if (data) {
-          this.router.navigateByUrl("/bluetooth");
+          this.router.navigate(["bluetooth"]);
         }
       })
       .catch((message) => {
