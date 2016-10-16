@@ -1,15 +1,56 @@
 import { validate } from "email-validator";
 
 export class User {
-  public username: string;
+  public _id?: number;
+  public displayName: string;
+  public firstName: string;
+  public lastName: string;
   public email: string;
-  public password: string;
-  public key: string;
-  public role: string;
-  public age: number;
-  public joinedAt: string;
+  public birthday: Date;
+  public password?: string;
+  public startedPlaying: Date;
+  public allowSharing: boolean;
+  public isConsultant?: boolean;
+  public isCoach?: boolean;
+  public createdAt?: string;
+  public updatedAt?: string;
+  public measurements?: Array<any>;
 
-  public isValidEmail() {
+  /**
+   * Validate the user email.
+   */
+  public isValidEmail(): boolean {
     return validate(this.email);
+  }
+
+  /**
+   * Validate user model.
+   */
+  public isValid(): boolean {
+    return !!(
+      this.firstName &&
+      this.lastName &&
+      this.isValidEmail() &&
+      this.birthday
+    );
+  }
+
+  /**
+   * User name.
+   * If display name is defined, it is used,
+   * otherwise full name.
+   */
+  get name(): string {
+    return this.displayName || `${this.firstName} ${this.lastName}`;
+  }
+
+  public toString(): string {
+    return `
+      Name:     ${this.firstName} ${this.lastName}
+      Email:    ${this.email}
+      Birthday: ${this.birthday}
+      Started:  ${this.startedPlaying}
+      Share:    ${this.allowSharing}
+    `;
   }
 }

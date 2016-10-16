@@ -1,0 +1,37 @@
+.background {
+  background-image: url("res://bg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.main-container {
+  margin-left: 30;
+  margin-right: 30;
+  background-color: white;
+}
+
+.main-label {
+  horizontal-align: center;
+  color: black;
+}
+
+.birthday-picker {
+  height: 120;
+}
+
+Button, TextField, DatePicker, Switch, .birthday-label, .allow-sharing-label {
+  margin-left: 16;
+  margin-right: 16;
+  margin-bottom: 10;
+}
+
+.birthday-label {
+  margin-bottom: 0;
+}
+
+.submit-button {
+  background-color: #CB1D00;
+  color: white;
+  margin-top: 15;
+}

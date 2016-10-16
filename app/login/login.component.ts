@@ -1,15 +1,14 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { Color } from "color";
-import { connectionType, getConnectionType } from "connectivity";
 import { Animation } from "ui/animation";
 import { View } from "ui/core/view";
-import { prompt } from "ui/dialogs";
 import { Page } from "ui/page";
 import { TextField } from "ui/text-field";
 import { GridLayout } from "ui/layouts/grid-layout";
 
-import { alert, setHintColor, LoginService, User } from "../shared";
+import { ConnectivityService, DialogService } from "../nativescript-services";
+import { setHintColor, LoginService, Login } from "../shared";
 
 @Component({
   selector: "rom-login",
@@ -17,7 +16,7 @@ import { alert, setHintColor, LoginService, User } from "../shared";
   styleUrls: ["login/login-common.css", "login/login.component.css"],
 })
 export class LoginComponent implements OnInit {
-  public user: User;
+  public user: Login;
   public isLoggingIn = true;
   public isAuthenticating = false;
 
@@ -30,10 +29,12 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private page: Page,
     private loginService: LoginService,
-    private page: Page
+    private connectivityService: ConnectivityService,
+    private dialogService: DialogService
   ) {
-    this.user = new User();
+    this.user = new Login();
     this.user.email = "johnny@test.dk";
     this.user.password = "1234";
   }
@@ -43,18 +44,22 @@ export class LoginComponent implements OnInit {
     this.showMainContent();
   }
 
+  public newUser(): void {
+    this.router.navigate(["newUser"]);
+  }
+
   public focusPassword() {
     this.password.nativeElement.focus();
   }
 
   public submit() {
     if (!this.user.isValidEmail()) {
-      alert("Enter a valid email address.");
+      this.dialogService.alert("Enter a valid email address.");
       return;
     }
 
-    this.isAuthenticating = true;
     if (this.isLoggingIn) {
+      this.isAuthenticating = true;
       this.login();
     } else {
       this.signUp();
@@ -66,20 +71,20 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    prompt({
+    this.dialogService.prompt({
       title: "Forgot Password",
       message: "Enter the email address you used to register for Groceries to reset your password.",
-      defaultText: "",
       okButtonText: "Ok",
       cancelButtonText: "Cancel",
     }).then((data) => {
       if (data.result) {
         this.loginService.resetPassword(data.text.trim())
           .then(() => {
-            alert("Your password was successfully reset. Please check your email for instructions on choosing a new password.");
+            this.dialogService
+              .alert("Your password was successfully reset. Please check your email for instructions on choosing a new password.");
           })
           .catch(() => {
-            alert("Unfortunately, an error occurred resetting your password.");
+            this.dialogService.alert("Unfortunately, an error occurred resetting your password.");
           });
       }
     });
@@ -109,8 +114,8 @@ export class LoginComponent implements OnInit {
   }
 
   private login() {
-    if (getConnectionType() === connectionType.none) {
-      alert("Racket'O'Meter requires an internet connection to log in.");
+    if (!this.connectivityService.isOnline()) {
+      this.dialogService.alert("Racket'O'Meter requires an internet connection to log in.");
       return;
     }
 
@@ -118,35 +123,22 @@ export class LoginComponent implements OnInit {
       .then((data) => {
         this.isAuthenticating = false;
         if (data) {
-          this.router.navigate(["bluetooth"]);
+          this.router.navigate(["newUser"]);
         }
       })
       .catch((message) => {
-        alert("message: " + message);
+        this.dialogService.alert("message: " + message);
         this.isAuthenticating = false;
       });
   }
 
   private signUp() {
-    if (getConnectionType() === connectionType.none) {
-      alert("Internet is requried to register.");
+    if (!this.connectivityService.isOnline()) {
+      this.dialogService.alert("Internet is requried to register.");
       return;
     }
 
-    this.loginService.register(this.user)
-      .then(() => {
-        alert("Your account was successfully created.");
-        this.isAuthenticating = false;
-        this.toggleDisplay();
-      })
-      .catch((message) => {
-        if (message.match(/same user/)) {
-          alert("This email address is already in use.");
-        } else {
-          alert("Unfortunately we were unable to create your account.");
-        }
-        this.isAuthenticating = false;
-      });
+    this.dialogService.alert("Registration is not possible at the time.");
   }
 
   private showMainContent() {

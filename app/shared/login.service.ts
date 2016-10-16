@@ -3,7 +3,7 @@ import { getString, setString } from "application-settings";
 
 import {
   User,
-  ILogin,
+  Login,
 } from "./";
 
 import { Angular2Apollo } from "angular2-apollo";
@@ -17,37 +17,9 @@ export class LoginService {
     return !!getString(tokenKey);
   }
 
-  constructor(private angularApollo: Angular2Apollo) {
-  }
+  constructor(private angularApollo: Angular2Apollo) { }
 
-  public register(user: User): Promise<User> {
-    console.log(`LoginService.register(): Email: '${user.email}' Pass: '${user.password}'`);
-
-    return this.angularApollo.mutate({
-      mutation: gql`
-          mutation createUser($email: String!, $password: String!) {
-            createUser(email: $email, password: $password) {
-              age
-              joinedAt
-            }
-          }
-        `,
-      variables: {
-        email: user.email,
-        password: user.password,
-      },
-    }).then((result) => {
-      console.log("LoginService.register(): Success: ", JSON.stringify(result));
-      if (result.data != null) {
-        return result.data.user;
-      }
-    }).catch((e, c) => {
-      console.error("LoginService.register(): Error: ", e, c);
-      return c;
-    });
-  }
-
-  public login(user: ILogin): Promise<User> {
+  public login(user: Login): Promise<User> {
     console.log(`LoginService.login(): Email: '${user.email}' Pass: '${user.password}'`);
 
     return this.angularApollo.query({

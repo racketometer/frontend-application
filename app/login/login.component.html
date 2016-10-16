@@ -8,6 +8,7 @@
 
   <StackLayout #mainContainer
     class="main-container">
+
     <Label
       class="main-label"
       [text]="isLoggingIn ? 'Login' : ' Sign up'"
@@ -17,6 +18,7 @@
       class="form-controls"
       rows="auto, auto"
       translateY="50">
+
       <TextField #email
         hint="Email Address"
         keyboardType="email"
