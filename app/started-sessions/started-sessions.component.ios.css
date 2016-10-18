@@ -1,10 +1,6 @@
-Page {
-  margin-top: -20;
-}
-
-TextField {
-  border-width: 1;
-  border-color: black;
+.main-container {
+  width: 480;
+  margin-bottom: 50;
 }
 
 .main-label {

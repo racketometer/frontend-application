@@ -4,7 +4,7 @@ import { Page } from "ui/page";
 import { DialogService } from "../nativescript-services";
 import { ItemEventData } from "ui/list-view";
 import { ObservableArray } from "data/observable-array";
-import { BluetoothService } from "../shared/bluetooth.service";
+import { BluetoothService, SessionService } from "../shared";
 
 import * as bluetooth from "nativescript-bluetooth";
 
@@ -21,7 +21,8 @@ export class BluetoothComponent implements OnInit {
     private router: Router,
     private page: Page,
     private bluetoothService: BluetoothService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private sessionService: SessionService,
   ) {
     this.peripherals = new ObservableArray<bluetooth.Peripheral>();
   }
@@ -56,7 +57,7 @@ export class BluetoothComponent implements OnInit {
    */
   public onPeripheralTap(event: ItemEventData): void {
     const peripheral = this.peripherals.getItem(event.index);
-    // TODO: SAVE UUID ON SESSION SERVICE
+    this.sessionService.setCurrentRacket(peripheral);
     this.router.navigate(["bluetoothDetails"]);
   }
 }

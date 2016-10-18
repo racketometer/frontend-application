@@ -8,10 +8,11 @@ import { authProviders, appRoutes } from "./app.routes";
 import { AppComponent } from "./app.component";
 
 import {
-  setStatusBarColors,
   LoginService,
   OverviewService,
   BluetoothService,
+  SessionService,
+  setStatusBarColors,
   UserService,
 } from "./shared";
 
@@ -20,6 +21,7 @@ import { NewUserModule } from "./new-user/new-user.module";
 import { OverviewModule } from "./overview/overview.module";
 import { BluetoothModule } from "./bluetooth/bluetooth.module";
 import { BluetoothDetailsModule } from "./bluetooth-details/bluetooth-details.module";
+import { StartedSessionsModule } from "./started-sessions/started-sessions.module";
 
 declare var process: any;
 const IP = process.env.IP;
@@ -32,10 +34,12 @@ setStatusBarColors();
 
 @NgModule({
   providers: [
+    authProviders,
     LoginService,
     OverviewService,
     BluetoothService,
     authProviders,
+    SessionService,
     UserService,
   ],
   imports: [
@@ -49,6 +53,7 @@ setStatusBarColors();
     BluetoothModule,
     BluetoothDetailsModule,
     ApolloModule.withClient(client),
+    StartedSessionsModule,
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],

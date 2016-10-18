@@ -1,3 +1,8 @@
+.main-container {
+  width: 455;
+  margin-bottom: 100;
+}
+
 .main-label {
   font-size: 28;
   margin-top: 32;

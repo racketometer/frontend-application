@@ -11,6 +11,7 @@
         "no-console": [false],
         "object-literal-sort-keys": false,
         "use-strict": [true],
+        "indent": [true, "spaces"],
 
         "component-class-suffix": true,
         "component-selector-name": [true, "kebab-case"],

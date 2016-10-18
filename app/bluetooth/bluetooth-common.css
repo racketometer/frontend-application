@@ -11,11 +11,8 @@
   padding: 12;
 }
 
-.header-label {
+.main-label {
   horizontal-align: center;
-  margin: 10;
-  font-size: 25;
-  color: white;
 }
 
 .header {

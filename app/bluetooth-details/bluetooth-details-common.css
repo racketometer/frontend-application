@@ -10,11 +10,8 @@
   padding: 12;
 }
 
-.ble-list-header {
+.main-label {
   horizontal-align: center;
-  margin: 10;
-  font-size: 25;
-  color: black;
 }
 
 .session-btn {
