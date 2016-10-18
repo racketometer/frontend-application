@@ -4,10 +4,11 @@
 
   <StackLayout #mainContainer
     class="main-container">
-    <GridLayout rows="auto, auto, *, auto" class="ble-grid">
-      <Label row="0" class="ble-list-header" text="Select a racket"></Label>
-      <StackLayout row="1" class="border"></StackLayout>
-      <ListView row="2" class="racket-list" [items]="peripherals" (itemTap)="onPeripheralTap($event)">
+    <GridLayout rows="auto, *, auto" class="ble-grid">      
+      <StackLayout row="0" class="header">
+        <Label class="header-label" text="Select a racket"></Label>
+      </StackLayout>
+      <ListView row="1" class="racket-list" [items]="peripherals" (itemTap)="onPeripheralTap($event)">
         <template let-item="item">
           <StackLayout class="racket-item">
             <Label [text]='item.name'></Label>
@@ -16,7 +17,7 @@
         </template>
       </ListView>
       <Button #scanButton 
-        row="3" 
+        row="2" 
         class="scan-btn" 
         (tap)="scan()" 
         [isEnabled]="!isScanning" 

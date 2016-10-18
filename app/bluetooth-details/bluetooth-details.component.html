@@ -1,21 +1,23 @@
 <GridLayout>
 
-  <GridLayout #background class="background"></GridLayout>
+	<GridLayout #background class="background"></GridLayout>
 
-  <StackLayout #mainContainer
-    class="main-container">
-    <GridLayout rows="*, *" class="ble-grid">
-      <StackLayout row="0">
-        <Label class="ble-list-header" text="Ready to go?"></Label>
-      </StackLayout>
+	<StackLayout #mainContainer class="main-container">
+		<GridLayout rows="*, *" class="ble-grid">
+			<StackLayout row="0">
+				<Label class="ble-list-header" text="Ready to go?"></Label>
+        <Label [text]="user.name"></Label>
+        <Label [text]="user.email"></Label>
+        <Label [text]="user.birthday"></Label>
+        <Label [text]="user.startedPlaying"></Label>
+        <Label [text]="user.startedPlaying"></Label>
+        <Label [text]="'Allow sharing: ' + user.allowSharing"></Label>
+        <Label [text]="'Racket id: ' + racket.UUID"></Label>
+			</StackLayout>
 
-      <Button #scanButton 
-        row="1" 
-        class="session-btn" 
-        (tap)="start()" 
-        text="Start session">
+			<Button #scanButton row="1" class="session-btn" (tap)="start()" text="Start session">
       </Button>
-    </GridLayout>
-  </StackLayout>
+		</GridLayout>
+	</StackLayout>
 
 </GridLayout>

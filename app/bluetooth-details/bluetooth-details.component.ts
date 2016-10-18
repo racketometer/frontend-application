@@ -4,12 +4,15 @@ import { Page } from "ui/page";
 
 import { BluetoothService } from "../shared/bluetooth.service";
 
+import { User } from "../shared/user.model";
+
 @Component({
   selector: "rom-bluetooth-details",
   templateUrl: "bluetooth-details/bluetooth-details.component.html",
   styleUrls: ["bluetooth-details/bluetooth-details-common.css"],
 })
 export class BluetoothDetailsComponent implements OnInit {
+  public user: User;
 
   constructor(
     private router: Router,
@@ -19,5 +22,9 @@ export class BluetoothDetailsComponent implements OnInit {
 
   public ngOnInit() {
     this.page.actionBarHidden = true;
+  }
+
+  public start(): void {
+    // start session
   }
 }

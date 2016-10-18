@@ -11,22 +11,26 @@
   padding: 12;
 }
 
-.ble-list-header {
+.header-label {
   horizontal-align: center;
   margin: 10;
   font-size: 25;
-  color: black;
+  color: white;
+}
+
+.header {
+  background-color: dodgerblue;
 }
 
 .scan-btn {
   background-color: #CB1D00;
   color: white;
-  margin-top: 20;
-  margin-left: 20;
-  margin-right: 20;
-  margin-bottom: 15;
-  padding: 15;
-  font-size: 23;
+  margin-top: 10;
+  margin-left: 10;
+  margin-right: 10;
+  margin-bottom: 5;
+  padding: 20;
+  font-size: 18;
 }
 
 .main-container {
