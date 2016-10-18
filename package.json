@@ -26,7 +26,7 @@
   },
   "scripts": {
     "tslint": "tslint \"app/**/*.ts\"",
-    "android": "tns run android --watch --bundle --live-edit",
+    "android": "tns livesync android --watch --bundle --live-edit",
     "ios": "tns livesync ios --emulator --bundle",
     "clean": "rimraf platforms/ && rimraf node_modules/ && rimraf lib/ && rimraf hooks"
   },
