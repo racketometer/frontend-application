@@ -22,6 +22,7 @@ import { LoginModule } from "./login/Login.module";
 import { NewUserModule } from "./new-user/new-user.module";
 import { OverviewModule } from "./overview/overview.module";
 import { BluetoothModule } from "./bluetooth/bluetooth.module";
+import { SessionResultModule } from "./session-result/session-result.module";
 import { StartedSessionsModule } from "./started-sessions/started-sessions.module";
 
 declare var process: any;
@@ -51,6 +52,7 @@ setStatusBarColors();
     NativeScriptServicesModule,
     NewUserModule,
     OverviewModule,
+    SessionResultModule,
     StartedSessionsModule,
   ],
   declarations: [AppComponent],

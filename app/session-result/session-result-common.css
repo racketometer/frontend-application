@@ -1,0 +1,45 @@
+.background {
+  background-image: url("res://bg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.main-label {
+  horizontal-align: center;
+  color: black;
+}
+
+.main-container {
+  margin-top: 50;
+  margin-left: 30;
+  margin-right: 30;
+  margin-bottom: 100;
+  padding: 0;
+  width: 480;
+  background-color: white;
+}
+
+.data-container {
+  margin-left: 20;
+  margin-right: 20;
+}
+
+.right {
+  horizontal-align: right;
+}
+
+.primary {
+  font-size: 26;
+}
+
+.row {
+  margin-top: 8;
+  margin-bottom: 8;
+}
+
+.stroke-chart {
+  margin-left: 7;
+  margin-right: 7;
+  margin-bottom: 3;
+}

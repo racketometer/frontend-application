@@ -123,7 +123,7 @@ export class LoginComponent implements OnInit {
       .then((data) => {
         this.isAuthenticating = false;
         if (data) {
-          this.router.navigate(["newUser"]);
+          this.router.navigate(["sessionResult"]);
         }
       })
       .catch((message) => {
