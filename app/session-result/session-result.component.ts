@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { Page } from "ui/page";
+import { ObservableArray } from "data/observable-array";
+
 import { Measurement } from "../shared/measurement.model";
 import { User } from "../shared/user.model";
-import { ObservableArray } from "data/observable-array";
 
 @Component({
   selector: "rom-session-result",
@@ -18,7 +20,8 @@ export class SessionResultComponent implements OnInit {
   public user: User;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private page: Page,
   ) {
     this.measurement = new Measurement();
     this.measurement.strokes = 120;
@@ -32,6 +35,7 @@ export class SessionResultComponent implements OnInit {
 
   public ngOnInit() {
     this.categoricalSource = new ObservableArray(this.getCategoricalSource());
+    this.page.actionBarHidden = true;
   }
 
  // taken from nativescript-ui angular chart "getting started" guide
