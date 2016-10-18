@@ -1,0 +1,87 @@
+<GridLayout>
+
+  <GridLayout
+    class="background"></GridLayout>
+
+  <StackLayout
+    class="main-container">
+
+    <Label
+      class="main-label"
+      text="New user"></Label>
+
+    <GridLayout
+      class="form-controls"
+      rows="auto, auto, auto, auto, auto, auto"
+      columns="*, *">
+
+      <TextField
+        hint="First name"
+        returnKeyType="next"
+        autocorrect="false"
+        autocapitalizationType="words"
+        row="0"
+        col="0"
+        [(ngModel)]="user.firstName"></TextField>
+
+      <TextField
+        hint="Last name"
+        returnKeyType="next"
+        autocorrect="false"
+        autocapitalizationType="words"
+        row="0"
+        col="1"
+        [(ngModel)]="user.lastName"></TextField>
+
+      <TextField
+        hint="Email Address"
+        keyboardType="email"
+        returnKeyType="next"
+        autocorrect="false"
+        autocapitalizationType="none"
+        row="1"
+        colSpan="2"
+        [(ngModel)]="user.email"></TextField>
+
+      <Label
+        class="birthday-label"
+        text="Birthday"
+        row="2"
+        colSpan="2"></Label>
+
+      <DatePicker
+        class="birthday-picker"
+        row="3"
+        colSpan="2"
+        [(ngModel)]="user.birthday"></DatePicker>
+
+      <TextField
+        hint="Years of experience"
+        keyboardType="number"
+        returnKeyType="next"
+        row="4"
+        colSpan="2"
+        [(ngModel)]="yearsOfExperience"></TextField>
+
+      <Label
+        class="allow-sharing-label"
+        text="Share data?"
+        row="5"
+        col="0"></Label>
+
+      <Switch
+        class="allow-sharing-switch"
+        row="5"
+        col="1"
+        [(ngModel)]="user.allowSharing"></Switch>
+
+    </GridLayout>
+
+    <Button
+      text="Next"
+      class="submit-button"
+      (tap)="submit()"></Button>
+
+  </StackLayout>
+
+</GridLayout>

@@ -10,11 +10,11 @@ export function setHintColor(args: { view: TextField, color: Color }) {
     args.view.android.setHintTextColor(args.color.android);
   }
   if (args.view.ios) {
-    let dictionary = new NSDictionary(
+    const dictionary = new NSDictionary(
       [args.color.ios],
       [NSForegroundColorAttributeName]
     );
-    args.view.ios.attributedPlaceholder = NSAttributedString.alloc().initWithStringAttributes(
-      args.view.hint, dictionary);
+    args.view.ios.attributedPlaceholder =
+      NSAttributedString.alloc().initWithStringAttributes(args.view.hint, dictionary);
   }
 }

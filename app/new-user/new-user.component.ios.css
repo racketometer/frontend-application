@@ -1,7 +1,8 @@
 .main-container {
-  height: 425;
+  height: 575;
   width: 300;
 }
+
 .main-label {
   color: #311217;
   font-size: 32;
@@ -9,15 +10,13 @@
   margin-bottom: 52;
   letter-spacing: 0.2;
 }
+
 TextField {
   border-width: 1;
   border-color: #6E595C;
   margin-bottom: 20;
 }
+
 .submit-button {
   height: 40;
-  margin-top: 15;
-}
-.sign-up-stack Label {
-  height: 48;
 }

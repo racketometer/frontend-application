@@ -6,13 +6,11 @@ type ScanCallback = (peripheral: bluetooth.Peripheral) => void;
 
 @Injectable()
 export class BluetoothService {
-  scanTime = 5; // seconds
-  isEnabled: boolean;
+  private scanTime = 5; // seconds
 
-  constructor() {
-    this.isBluetoothEnabled();
-  }
-
+  /**
+   * Scans for nearby bluetooth sensors
+   */
   public connect(item: bluetooth.Peripheral): void {
     bluetooth.connect({
       UUID: item.UUID,
@@ -22,10 +20,13 @@ export class BluetoothService {
       },
       onDisconnected: (peripheral) => {
         console.log("disconnected");
-      }
+      },
     });
   }
 
+  /**
+   * Scans for nearby bluetooth sensors
+   */
   public scan(callback: ScanCallback): Promise<any> {
     return this.permission().then(() =>
       bluetooth.startScanning({
@@ -36,12 +37,16 @@ export class BluetoothService {
     );
   }
 
-  public isBluetoothEnabled(): void {
-    bluetooth.isBluetoothEnabled().then( (enabled: boolean) => {
-      this.isEnabled = enabled;
-     });
+  /**
+   * Checks if bluetooth is enabled on the device
+   */
+  public isBluetoothEnabled(): Promise<boolean> {
+    return bluetooth.isBluetoothEnabled();
   }
 
+  /**
+   * Checks if Coarse location permissions
+   */
   public permission(): Promise<boolean> {
     return bluetooth.hasCoarseLocationPermission().then((granted) => {
       if (!granted) {
@@ -52,6 +57,9 @@ export class BluetoothService {
     });
   }
 
+  /**
+   * Reads data from a predefined service on a specific bluetooth sensor
+   */
   private read(ID: string): void {
     bluetooth.read({
       peripheralUUID: ID,

@@ -10,11 +10,8 @@
         "emitDecoratorMetadata": true,
         "noEmitOnError": true,
         "typeRoots": [
-            "node_modules/@types"
-        ],
-        "types": [
-            "../types/node",
-            "../types/isomorphic-fetch"
+            "./node_modules/@types",
+            "./types"
         ]
     },
     "files": [

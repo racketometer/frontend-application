@@ -1,14 +1,56 @@
-const validator = require("email-validator");
+import { validate } from "email-validator";
 
 export class User {
-  username: string;
-  email: string;
-  password: string;
-  key: string;
-  role: string;
-  age: number;
-  joinedAt: string;
-  isValidEmail() {
-    return validator.validate(this.email);
+  public _id?: number;
+  public displayName: string;
+  public firstName: string;
+  public lastName: string;
+  public email: string;
+  public birthday: Date;
+  public password?: string;
+  public startedPlaying: Date;
+  public allowSharing: boolean;
+  public isConsultant?: boolean;
+  public isCoach?: boolean;
+  public createdAt?: string;
+  public updatedAt?: string;
+  public measurements?: Array<any>;
+
+  /**
+   * Validate the user email.
+   */
+  public isValidEmail(): boolean {
+    return validate(this.email);
+  }
+
+  /**
+   * Validate user model.
+   */
+  public isValid(): boolean {
+    return !!(
+      this.firstName &&
+      this.lastName &&
+      this.isValidEmail() &&
+      this.birthday
+    );
+  }
+
+  /**
+   * User name.
+   * If display name is defined, it is used,
+   * otherwise full name.
+   */
+  get name(): string {
+    return this.displayName || `${this.firstName} ${this.lastName}`;
+  }
+
+  public toString(): string {
+    return `
+      Name:     ${this.firstName} ${this.lastName}
+      Email:    ${this.email}
+      Birthday: ${this.birthday}
+      Started:  ${this.startedPlaying}
+      Share:    ${this.allowSharing}
+    `;
   }
 }

@@ -4,37 +4,21 @@
     scaleX="1.4"
     scaleY="1.4"
     class="background"
-    (loaded)="startBackgroundAnimation(background)"></GridLayout>
-
-  <StackLayout #initialContainer
-    class="initial-container">
-    <Image
-      src="res://logo_login"
-      stretch="none"
-      class="initial-logo"></Image>
-    <Label
-      text="Racket'O'meter"
-      class="initial-label"></Label>
-    <StackLayout
-      (tap)="showMainContent()"
-      class="initial-button">
-      <Label
-        text="Login"
-        class="initial-button-label"></Label>
-    </StackLayout>
-  </StackLayout>
+    (loaded)="startBackgroundAnimation()"></GridLayout>
 
   <StackLayout #mainContainer
     class="main-container">
+
     <Label
       class="main-label"
-      text="Login"
-      [color]="isLoggingIn? 'black' : 'white'"></Label>
+      [text]="isLoggingIn ? 'Login' : ' Sign up'"
+      [color]="isLoggingIn ? 'black' : 'white'"></Label>
 
     <GridLayout #formControls
       class="form-controls"
       rows="auto, auto"
       translateY="50">
+
       <TextField #email
         hint="Email Address"
         keyboardType="email"
@@ -79,13 +63,5 @@
         [text]="isLoggingIn ? 'Sign up here' : 'Back to login'"></Label>
     </StackLayout>
   </StackLayout>
-
-  <!-- The fruit logo that appears within the container -->
-  <AbsoluteLayout #logoContainer
-    class="logo-container">
-    <Image
-      src="res://logo_login"
-      stretch="none"></Image>
-  </AbsoluteLayout>
 
 </GridLayout>
