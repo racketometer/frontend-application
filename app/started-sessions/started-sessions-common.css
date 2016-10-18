@@ -1,0 +1,40 @@
+.background {
+  background-image: url("res://bg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.main-container {
+  margin-left: 30;
+  margin-right: 30;
+  margin-top: 50;
+  background-color: white;
+}
+
+.main-label {
+  horizontal-align: center;
+  color: black;
+}
+
+.sessions {
+  margin-left: 10;
+  margin-right: 10;
+}
+
+.session {
+  padding: 12;
+}
+
+.name {
+  font-size: 20;
+}
+
+.email {
+  font-size: 14;
+  color: #806c6d;
+}
+
+.racket {
+  font-size: 16;
+}

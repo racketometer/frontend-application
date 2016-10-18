@@ -1,0 +1,12 @@
+.main-container {
+  width: 455;
+  margin-bottom: 100;
+}
+
+.main-label {
+  font-size: 28;
+  margin-top: 32;
+  margin-bottom: 32;
+  letter-spacing: 0.4;
+}
+
