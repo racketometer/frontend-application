@@ -5,3 +5,4 @@ export * from "./hint-util";
 export * from "./status-bar-util";
 export * from "./login.model";
 export * from "./user.service";
+export * from "./session-service";

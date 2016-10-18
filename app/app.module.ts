@@ -11,9 +11,10 @@ import { authProviders, appRoutes } from "./app.routes";
 import { AppComponent } from "./app.component";
 
 import {
-  setStatusBarColors,
   LoginService,
   OverviewService,
+  SessionService,
+  setStatusBarColors,
   UserService,
 } from "./shared";
 
@@ -22,6 +23,8 @@ import { NewUserModule } from "./new-user/new-user.module";
 import { OverviewModule } from "./overview/overview.module";
 import { BluetoothModule } from "./bluetooth/bluetooth.module";
 import { SessionResultModule } from "./session-result/session-result.module";
+import { StartedSessionsModule } from "./started-sessions/started-sessions.module";
+
 
 declare var process: any;
 const IP = process.env.IP;
@@ -34,9 +37,10 @@ setStatusBarColors();
 
 @NgModule({
   providers: [
+    authProviders,
     LoginService,
     OverviewService,
-    authProviders,
+    SessionService,
     UserService,
   ],
   imports: [
@@ -50,6 +54,7 @@ setStatusBarColors();
     NewUserModule,
     OverviewModule,
     SessionResultModule,
+    StartedSessionsModule,
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],

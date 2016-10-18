@@ -11,10 +11,7 @@
         "no-console": [false],
         "object-literal-sort-keys": false,
         "use-strict": [true],
-        "indent": [
-            true,
-            "spaces"
-        ],
+        "indent": [true, "spaces"],
         "component-class-suffix": true,
         "component-selector-name": [true, "kebab-case"],
         "component-selector-prefix": [true, "rom"],

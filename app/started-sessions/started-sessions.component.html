@@ -1,0 +1,37 @@
+<GridLayout>
+
+  <GridLayout #background
+    class="background"></GridLayout>
+
+  <GridLayout #mainContainer
+    class="main-container"
+    rows="auto, *">
+
+    <Label
+      class="main-label"
+      row="0"
+      text="Started sessions"></Label>
+
+    <ListView
+      class="sessions"
+      row="1"
+      [items]="startedSessions"
+      (itemTap)="onSessionTap($event)">
+        <template let-session="item">
+            <StackLayout class="session">
+                <Label
+                  class="name"
+                  [text]='session.user.name'></Label>
+                <Label
+                  class="email"
+                  [text]='session.user.email'></Label>
+                <Label
+                  class="racket"
+                  [text]='session.racket.name'></Label>
+            </StackLayout>
+        </template>
+    </ListView>
+
+  </GridLayout>
+
+</GridLayout>
