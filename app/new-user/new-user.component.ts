@@ -44,7 +44,7 @@ export class NewUserComponent implements OnInit {
 
     this.userService.newUser(this.user)
       .then(() => {
-        this.router.navigate(["bluetooth"]);
+        this.router.navigate(["startedSessions"]);
       })
       .catch((err) => {
         this.dialogService.alert("Email in use");
