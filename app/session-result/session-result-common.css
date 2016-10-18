@@ -10,17 +10,6 @@
   color: black;
 }
 
-.header-label {
-  horizontal-align: center;
-  margin: 10;
-  font-size: 25;
-  color: white;
-}
-
-.header {
-  background-color: dodgerblue;
-}
-
 .main-container {
   margin-top: 50;
   margin-left: 30;

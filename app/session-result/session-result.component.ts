@@ -10,8 +10,8 @@ import { User } from "../shared/user.model";
   selector: "rom-session-result",
   templateUrl: "session-result/session-result.component.html",
   styleUrls: [
-    "session-result/session-result-common.css",
-    "session-result/session-result.component.css",
+      "session-result/session-result-common.css",
+      "session-result/session-result.component.css",
     ],
 })
 export class SessionResultComponent implements OnInit {
@@ -39,7 +39,8 @@ export class SessionResultComponent implements OnInit {
   }
 
  // taken from nativescript-ui angular chart "getting started" guide
-  public getCategoricalSource(): Country[] {
+ // http://docs.telerik.com/devtools/nativescript-ui/Controls/Angular/Chart/getting-started
+  public getCategoricalSource(): Array<Country> {
     return [
       { Country: "Clear", Amount: 15, SecondVal: 14, ThirdVal: 24, Impact: 0, Year: 0 },
       { Country: "Smash", Amount: 13, SecondVal: 23, ThirdVal: 25, Impact: 0, Year: 0 },
@@ -50,6 +51,7 @@ export class SessionResultComponent implements OnInit {
   }
 }
  // taken from nativescript-ui angular chart "getting started" guide
+ // http://docs.telerik.com/devtools/nativescript-ui/Controls/Angular/Chart/getting-started
 export class Country {
   constructor(
     public Country?: string,

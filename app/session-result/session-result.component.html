@@ -1,39 +1,39 @@
 <GridLayout>
 
-	<GridLayout #background class="background"></GridLayout>
+  <GridLayout #background class="background"></GridLayout>
 
-	<StackLayout #mainContainer class="main-container">
+  <StackLayout #mainContainer class="main-container">
 
-		<Label class="main-label" [text]="user.name"></Label>
+    <Label class="main-label" [text]="user.name"></Label>
     
-		<GridLayout class="data-container" rows="auto, auto, auto" columns="*, *">
+    <GridLayout class="data-container" rows="auto, auto, auto" columns="*, *">
 
-			<Stacklayout class="row" col="0" row="0">
-				<Label class="primary" [text]="measurement.strokes"></Label>
-				<Label text="STROKES"></Label>
-			</Stacklayout>
-			<Stacklayout class="row" col="1" row="0">
-				<Label class="right primary" [text]="measurement.date | date"></Label>
-				<Label class="right" text="DATE"></Label>
-			</Stacklayout>
+      <Stacklayout class="row" col="0" row="0">
+        <Label class="primary" [text]="measurement.strokes"></Label>
+        <Label text="STROKES"></Label>
+      </Stacklayout>
+      <Stacklayout class="row" col="1" row="0">
+        <Label class="right primary" [text]="measurement.date | date"></Label>
+        <Label class="right" text="DATE"></Label>
+      </Stacklayout>
 
-			<Stacklayout class="row" col="0" row="1">
-				<Label class="primary" [text]="measurement.maxRacketSpeed + 'km/h'"></Label>
-				<Label text="MAX RACKET SPEED"></Label>
-			</Stacklayout>
-			<Stacklayout class="row" col="1" row="1">
-				<Label class="right primary" [text]="measurement.maxShuttlecockSpeed + 'km/h'"></Label>
-				<Label class="right" text="MAX SHUTTLECOCK SPEED"></Label>
-			</Stacklayout>
+      <Stacklayout class="row" col="0" row="1">
+        <Label class="primary" [text]="measurement.maxRacketSpeed + 'km/h'"></Label>
+        <Label text="MAX RACKET SPEED"></Label>
+      </Stacklayout>
+      <Stacklayout class="row" col="1" row="1">
+        <Label class="right primary" [text]="measurement.maxShuttlecockSpeed + 'km/h'"></Label>
+        <Label class="right" text="MAX SHUTTLECOCK SPEED"></Label>
+      </Stacklayout>
 
-		</GridLayout>
+    </GridLayout>
 
-		<RadCartesianChart exampleTitle toggleNavButton class="stroke-chart">
-			<CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
-			<LinearAxis tkCartesianVerticalAxis></LinearAxis>
-			<BarSeries tkCartesianSeries seriesName="Bar" stackMode="Stack" [items]="categoricalSource" categoryProperty="Country" valueProperty="Amount"></BarSeries>
-		</RadCartesianChart>
+    <RadCartesianChart class="stroke-chart">
+      <CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
+      <LinearAxis tkCartesianVerticalAxis></LinearAxis>
+      <BarSeries tkCartesianSeries seriesName="Bar" stackMode="Stack" [items]="categoricalSource" categoryProperty="Country" valueProperty="Amount"></BarSeries>
+    </RadCartesianChart>
 
-	</StackLayout>
+  </StackLayout>
 
 </GridLayout>
