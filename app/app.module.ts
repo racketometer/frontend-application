@@ -25,7 +25,6 @@ import { BluetoothModule } from "./bluetooth/bluetooth.module";
 import { SessionResultModule } from "./session-result/session-result.module";
 import { StartedSessionsModule } from "./started-sessions/started-sessions.module";
 
-
 declare var process: any;
 const IP = process.env.IP;
 
