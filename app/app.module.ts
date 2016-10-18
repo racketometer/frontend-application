@@ -21,6 +21,7 @@ import { LoginModule } from "./login/Login.module";
 import { NewUserModule } from "./new-user/new-user.module";
 import { OverviewModule } from "./overview/overview.module";
 import { BluetoothModule } from "./bluetooth/bluetooth.module";
+import { SessionResultModule } from "./session-result/session-result.module";
 
 declare var process: any;
 const IP = process.env.IP;
@@ -48,6 +49,7 @@ setStatusBarColors();
     NativeScriptServicesModule,
     NewUserModule,
     OverviewModule,
+    SessionResultModule,
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],

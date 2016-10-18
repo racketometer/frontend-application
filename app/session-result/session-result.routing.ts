@@ -4,7 +4,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { SessionResultComponent } from "./session-result.component";
 
 const sessionResultRoutes: Routes = [
-  { path: "bluetooth", component: SessionResultComponent },
+  { path: "sessionResult", component: SessionResultComponent },
 ];
 
 export const sessionResultRouting: ModuleWithProviders = RouterModule.forChild(sessionResultRoutes);
