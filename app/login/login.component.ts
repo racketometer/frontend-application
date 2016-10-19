@@ -123,7 +123,7 @@ export class LoginComponent implements OnInit {
       .then((data) => {
         this.isAuthenticating = false;
         if (data) {
-          this.router.navigate(["sessionResult"]);
+          this.router.navigate(["bluetooth"]);
         }
       })
       .catch((message) => {

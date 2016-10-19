@@ -4,7 +4,7 @@ import { Page } from "ui/page";
 import { ObservableArray } from "data/observable-array";
 
 import { Measurement } from "../shared/measurement.model";
-import { User } from "../shared/user.model";
+import { User } from "../shared";
 
 @Component({
   selector: "rom-session-result",

@@ -1,11 +1,23 @@
-<StackLayout>
-    <button #scanButton (tap)="scan()" text="Scan">Scan</button>        
-    <ListView [items]="peripherals" (itemTap)="onPeripheralTap($event)">
-        <template let-item="item">
-            <StackLayout>
-                <Label [text]='item.name'></Label>
-                <Label [text]='"[" + item.UUID +"]"'></Label>
-            </StackLayout>
-        </template>
-    </ListView>
-</StackLayout>
+<GridLayout>
+
+	<GridLayout #background class="background"></GridLayout>
+
+	<StackLayout #mainContainer class="main-container">
+
+		<GridLayout rows="auto, *, auto" class="ble-grid">
+			<Label class="main-label" text="Select a racket"></Label>
+			<ListView row="1" class="racket-list" [items]="peripherals" (itemTap)="onPeripheralTap($event)">
+				<template let-item="item">
+					<StackLayout class="racket-item">
+						<Label [text]='item.name'></Label>
+						<Label [text]='"[" + item.UUID +"]"'></Label>
+					</StackLayout>
+				</template>
+			</ListView>
+			<Button #scanButton row="2" class="scan-btn" (tap)="scan()" [isEnabled]="!isScanning" [text]="isScanning ? 'Scanning' : 'Scan'">
+      </Button>
+		</GridLayout>
+    
+	</StackLayout>
+
+</GridLayout>

@@ -1,13 +1,9 @@
 import { Injectable } from "@angular/core";
 import { getString, setString } from "application-settings";
-
-import {
-  User,
-  Login,
-} from "./";
-
 import { Angular2Apollo } from "angular2-apollo";
 import gql from "graphql-tag";
+
+import { User, Login } from "../";
 
 const tokenKey = "token";
 

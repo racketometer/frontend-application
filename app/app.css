@@ -21,3 +21,12 @@ TextField {
 .line-through {
   text-decoration: line-through;
 }
+
+.bottom-bar {
+  margin-bottom: 45;
+}
+
+.border {
+  background-color: black;
+  height: 1;
+}

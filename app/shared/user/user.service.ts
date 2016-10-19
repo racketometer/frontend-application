@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Angular2Apollo } from "angular2-apollo";
 import gql from "graphql-tag";
 
-import { ConnectivityService }from "../nativescript-services";
+import { ConnectivityService }from "../../nativescript-services";
 import { User } from "./";
 
 @Injectable()

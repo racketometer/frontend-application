@@ -1,0 +1,41 @@
+.background {
+  background-image: url("res://bg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.racket-item {
+  height: 120;
+  font-size: 17;
+  padding: 12;
+}
+
+.main-label {
+  horizontal-align: center;
+}
+
+.session-btn {
+  background-color: #CB1D00;
+  color: white;
+  margin-top: 20;
+  margin-left: 20;
+  margin-right: 20;
+  margin-bottom: 15;
+  padding: 15;
+  font-size: 23;
+}
+
+.main-container {
+  margin-top: 50;
+  margin-left: 30;
+  margin-right: 30;
+  margin-bottom: 100;
+  padding: 0;
+  width: 480;
+  background-color: white;
+}
+
+.ble-grid {
+  padding: 0;
+  margin: 0;
+}

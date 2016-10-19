@@ -1,83 +1,63 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { Button } from "ui/button";
+import { Page } from "ui/page";
+import { DialogService } from "../nativescript-services";
 import { ItemEventData } from "ui/list-view";
 import { ObservableArray } from "data/observable-array";
+import { BluetoothService, SessionService } from "../shared";
 
 import * as bluetooth from "nativescript-bluetooth";
 
 @Component({
   selector: "rom-bluetooth",
   templateUrl: "bluetooth/bluetooth.component.html",
-  styleUrls: ["bluetooth/bluetooth.css"],
+  styleUrls: ["bluetooth/bluetooth-common.css"],
 })
 export class BluetoothComponent implements OnInit {
   public peripherals: ObservableArray<bluetooth.Peripheral>;
-  public scanBtn: Button;
-
-  @ViewChild("scanButton") public scanButton: ElementRef;
+  public isScanning = false;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private page: Page,
+    private bluetoothService: BluetoothService,
+    private dialogService: DialogService,
+    private sessionService: SessionService,
   ) {
     this.peripherals = new ObservableArray<bluetooth.Peripheral>();
   }
 
   public ngOnInit() {
-    this.scanBtn = this.scanButton.nativeElement as Button;
+    this.page.actionBarHidden = true;
   }
 
+  /**
+   * Scan after Peripherals.
+   */
   public scan(): void {
-    this.scanBtn.isEnabled = false;
+    this.isScanning = true;
     this.peripherals.length = 0;
-    this.permission().then(() =>
-      bluetooth.startScanning({
-        serviceUUIDs: [],
-        seconds: 5,
-        onDiscovered: (peripheral: bluetooth.Peripheral) => {
-          this.peripherals.push(peripheral);
-        },
-      })
-    ).catch((err) => {
-      console.log("scan: catch", err);
-    }).then(() => {
-      this.scanBtn.isEnabled = true;
-    });
-  }
-
-  public onPeripheralTap(event: ItemEventData): void {
-    const item  = this.peripherals.getItem(event.index);
-    bluetooth.connect({
-      UUID: item.UUID,
-      onConnected: (peripheral) => {
-        console.log("connected");
-        this.read(item.UUID);
-      },
-      onDisconnected: (peripheral) => {
-        console.log("disconnected");
-      },
-    });
-  }
-
-  private read(ID: string): void {
-    bluetooth.read({
-      peripheralUUID: ID,
-      serviceUUID: "F000AA00-0451-4000-B000-000000000000",
-      characteristicUUID: "F000AA01-0451-4000-B000-000000000000",
-    }).then( (result) => {
-      console.log(JSON.stringify(result));
-    }, (err) => {
-      console.log("read error: " + err);
-    });
-  }
-
-  private permission(): Promise<boolean> {
-    return bluetooth.hasCoarseLocationPermission().then((granted) => {
-      if (!granted) {
-        return bluetooth.requestCoarseLocationPermission();
-      } else {
-        return true;
+    this.bluetoothService.isBluetoothEnabled().then( (enabled) => {
+      if (!enabled) {
+        this.dialogService.alert("bluetooth is not enabled", "Bluetooth");
+        return;
       }
+      return this.bluetoothService.scan((peripheral: bluetooth.Peripheral) => {
+        this.peripherals.push(peripheral);
+      }).catch((err) => {
+        this.dialogService.alert(err, "Bluetooth");
+      });
+    }).then( () => {
+      this.isScanning = false;
     });
+  }
+
+  /**
+   * Handle Peripheral tap.
+   */
+  public onPeripheralTap(event: ItemEventData): void {
+    const peripheral = this.peripherals.getItem(event.index);
+    this.sessionService.setCurrentRacket(peripheral);
+    this.router.navigate(["bluetoothDetails"]);
   }
 }

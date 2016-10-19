@@ -55,6 +55,13 @@ export class SessionService {
   }
 
   /**
+   * Gets the current session.
+   */
+  public getCurrentSession(): Session {
+    return this.currentSession;
+  }
+
+  /**
    * Clear current session.
    */
   private clearCurrentSession(): void {
