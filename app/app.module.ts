@@ -21,6 +21,7 @@ import { NewUserModule } from "./new-user/new-user.module";
 import { OverviewModule } from "./overview/overview.module";
 import { BluetoothModule } from "./bluetooth/bluetooth.module";
 import { BluetoothDetailsModule } from "./bluetooth-details/bluetooth-details.module";
+import { SessionResultModule } from "./session-result/session-result.module";
 import { StartedSessionsModule } from "./started-sessions/started-sessions.module";
 
 declare var process: any;
@@ -43,16 +44,17 @@ setStatusBarColors();
     UserService,
   ],
   imports: [
-    LoginModule,
     NativeScriptModule,
     NativeScriptRouterModule,
     NativeScriptRouterModule.forRoot(appRoutes),
     NativeScriptServicesModule,
+    ApolloModule.withClient(client),
+    LoginModule,
     NewUserModule,
     OverviewModule,
     BluetoothModule,
     BluetoothDetailsModule,
-    ApolloModule.withClient(client),
+    SessionResultModule,
     StartedSessionsModule,
   ],
   declarations: [AppComponent],

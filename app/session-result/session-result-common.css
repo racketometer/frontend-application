@@ -5,25 +5,9 @@
   background-position: center;
 }
 
-.racket-item {
-  height: 120;
-  font-size: 17;
-  padding: 12;
-}
-
 .main-label {
   horizontal-align: center;
-}
-
-.scan-btn {
-  background-color: #CB1D00;
-  color: white;
-  margin-top: 10;
-  margin-left: 10;
-  margin-right: 10;
-  margin-bottom: 5;
-  padding: 20;
-  font-size: 18;
+  color: black;
 }
 
 .main-container {
@@ -36,7 +20,26 @@
   background-color: white;
 }
 
-.ble-grid {
-  padding: 0;
-  margin: 0;
+.data-container {
+  margin-left: 20;
+  margin-right: 20;
+}
+
+.right {
+  horizontal-align: right;
+}
+
+.primary {
+  font-size: 26;
+}
+
+.row {
+  margin-top: 8;
+  margin-bottom: 8;
+}
+
+.stroke-chart {
+  margin-left: 7;
+  margin-right: 7;
+  margin-bottom: 3;
 }

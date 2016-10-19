@@ -42,7 +42,7 @@ export class BluetoothComponent implements OnInit {
         this.dialogService.alert("bluetooth is not enabled", "Bluetooth");
         return;
       }
-      this.bluetoothService.scan((peripheral: bluetooth.Peripheral) => {
+      return this.bluetoothService.scan((peripheral: bluetooth.Peripheral) => {
         this.peripherals.push(peripheral);
       }).catch((err) => {
         this.dialogService.alert(err, "Bluetooth");

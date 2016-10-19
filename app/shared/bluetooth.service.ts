@@ -27,14 +27,14 @@ export class BluetoothService {
   /**
    * Scans for nearby bluetooth sensors
    */
-  public scan(callback: ScanCallback): Promise<any> {
-    return this.permission().then(() =>
-      bluetooth.startScanning({
+  public scan(callback: ScanCallback): Promise<void> {
+    return this.permission().then(() => {
+      return bluetooth.startScanning({
         serviceUUIDs: [],
         seconds: this.scanTime,
         onDiscovered: (peripheral: bluetooth.Peripheral) => callback(peripheral)
-      })
-    );
+      });
+    });
   }
 
   /**
