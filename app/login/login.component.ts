@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
     private dialogService: DialogService
   ) {
     this.user = new Login();
+    this.user.email = "johnny@test.dk";
+    this.user.password = "1234";
   }
 
   public ngOnInit(): void {
