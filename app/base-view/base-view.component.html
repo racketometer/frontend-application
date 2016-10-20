@@ -1,0 +1,14 @@
+<GridLayout>
+
+  <GridLayout #background
+    scaleX="1.4"
+    scaleY="1.4"
+    class="background"
+    (loaded)="startBackgroundAnimation()"></GridLayout>
+
+  <StackLayout #mainContainer class="main-container">
+
+    <ng-content></ng-content>
+
+  </StackLayout>
+</GridLayout>

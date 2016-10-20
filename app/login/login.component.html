@@ -1,67 +1,61 @@
-<GridLayout>
+<rom-base-view>
+  <GridLayout rows="*, auto">
+    <StackLayout row="0">
+      <Label
+        class="main-label"
+        [text]="isLoggingIn ? 'Login' : ' Sign up'"
+        [color]="isLoggingIn ? 'black' : 'darkgreen'"></Label>
 
-  <GridLayout #background
-    scaleX="1.4"
-    scaleY="1.4"
-    class="background"
-    (loaded)="startBackgroundAnimation()"></GridLayout>
+      <GridLayout #formControls
+        class="form-controls"
+        rows="auto, auto"
+        translateY="50">
 
-  <StackLayout #mainContainer
-    class="main-container">
+        <TextField #email
+          hint="Email Address"
+          keyboardType="email"
+          returnKeyType="next"
+          (returnPress)="focusPassword()"
+          [(ngModel)]="user.email"
+          [isEnabled]="!isAuthenticating"
+          autocorrect="false"
+          autocapitalizationType="none"
+          row="0"></TextField>
+        <TextField #password
+          hint="Password"
+          secure="true"
+          returnKeyType="done"
+          (returnPress)="submit()"
+          [(ngModel)]="user.password"
+          [isEnabled]="!isAuthenticating"
+          row="1"></TextField>
 
-    <Label
-      class="main-label"
-      [text]="isLoggingIn ? 'Login' : ' Sign up'"
-      [color]="isLoggingIn ? 'black' : 'white'"></Label>
+        <ActivityIndicator
+          [busy]="isAuthenticating"
+          rowSpan="2"></ActivityIndicator>
+      </GridLayout>
 
-    <GridLayout #formControls
-      class="form-controls"
-      rows="auto, auto"
-      translateY="50">
-
-      <TextField #email
-        hint="Email Address"
-        keyboardType="email"
-        returnKeyType="next"
-        (returnPress)="focusPassword()"
-        [(ngModel)]="user.email"
+      <Button
+        [text]="isLoggingIn ? 'Login' : 'Sign up'"
         [isEnabled]="!isAuthenticating"
-        autocorrect="false"
-        autocapitalizationType="none"
-        row="0"></TextField>
-      <TextField #password
-        hint="Password"
-        secure="true"
-        returnKeyType="done"
-        (returnPress)="submit()"
-        [(ngModel)]="user.password"
-        [isEnabled]="!isAuthenticating"
-        row="1"></TextField>
+        class="submit-button"
+        (tap)="submit()"></Button>
 
-      <ActivityIndicator
-        [busy]="isAuthenticating"
-        rowSpan="2"></ActivityIndicator>
-    </GridLayout>
+      <Label
+        class="forgot-password-label"
+        text="Forgot password?"
+        (tap)="forgotPassword()"
+        [opacity]="isLoggingIn ? 1 : 0"></Label>
 
-    <Button
-      [text]="isLoggingIn ? 'Login' : 'Sign up'"
-      [isEnabled]="!isAuthenticating"
-      class="submit-button"
-      (tap)="submit()"></Button>
-
-    <Label
-      class="forgot-password-label"
-      text="Forgot password?"
-      (tap)="forgotPassword()"
-      [opacity]="isLoggingIn ? 1 : 0"></Label>
+    </StackLayout>
 
     <StackLayout #signUpStack
+      row="1"
       class="sign-up-stack"
       (tap)="toggleDisplay()"
       translateY="50">
       <Label
         [text]="isLoggingIn ? 'Sign up here' : 'Back to login'"></Label>
     </StackLayout>
-  </StackLayout>
-
-</GridLayout>
+  </GridLayout>
+</rom-base-view>

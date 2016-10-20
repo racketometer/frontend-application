@@ -3,20 +3,6 @@
   opacity: 0;
 }
 
-.background {
-  background-image: url("res://bg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-.main-container {
-  visibility: collapse;
-  opacity: 0;
-  margin-left: 30;
-  margin-right: 30;
-  background-color: white;
-}
 .main-label {
   horizontal-align: center;
   color: black;

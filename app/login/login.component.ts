@@ -1,14 +1,12 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, ViewChild, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Color } from "color";
-import { Animation } from "ui/animation";
-import { View } from "ui/core/view";
-import { Page } from "ui/page";
 import { TextField } from "ui/text-field";
-import { GridLayout } from "ui/layouts/grid-layout";
+import { View } from "ui/core/view";
+import { Animation } from "ui/animation";
 
 import { ConnectivityService, DialogService } from "../nativescript-services";
-import { setHintColor, LoginService, Login } from "../shared";
+import { LoginService, Login } from "../shared";
 
 @Component({
   selector: "rom-login",
@@ -20,7 +18,6 @@ export class LoginComponent implements OnInit {
   public isLoggingIn = true;
   public isAuthenticating = false;
 
-  @ViewChild("mainContainer") public mainContainer: ElementRef;
   @ViewChild("formControls") public formControls: ElementRef;
   @ViewChild("signUpStack") public signUpStack: ElementRef;
   @ViewChild("email") public email: ElementRef;
@@ -29,30 +26,22 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private page: Page,
     private loginService: LoginService,
     private connectivityService: ConnectivityService,
     private dialogService: DialogService
   ) {
     this.user = new Login();
-    this.user.email = "johnny@test.dk";
-    this.user.password = "1234";
   }
 
-  public ngOnInit() {
-    this.page.actionBarHidden = true;
-    this.showMainContent();
+  public ngOnInit(): void {
+    this.showContent();
   }
 
-  public newUser(): void {
-    this.router.navigate(["newUser"]);
-  }
-
-  public focusPassword() {
+  public focusPassword(): void {
     this.password.nativeElement.focus();
   }
 
-  public submit() {
+  public submit(): void {
     if (!this.user.isValidEmail()) {
       this.dialogService.alert("Enter a valid email address.");
       return;
@@ -66,7 +55,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  public forgotPassword() {
+  public forgotPassword(): void {
     if (this.isAuthenticating) {
       return;
     }
@@ -90,30 +79,16 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public toggleDisplay() {
+  public toggleDisplay(): void {
     if (this.isAuthenticating) {
       return;
     }
 
     this.isLoggingIn = !this.isLoggingIn;
     this.setTextFieldColors();
-    const mainContainer = this.mainContainer.nativeElement as View;
-    mainContainer.animate({
-      backgroundColor: this.isLoggingIn ? new Color("white") : new Color("#220c08"),
-      duration: 200,
-    });
   }
 
-  public startBackgroundAnimation() {
-    const background = this.background.nativeElement as GridLayout;
-
-    background.animate({
-      scale: { x: 1.0, y: 1.0 },
-      duration: 10000,
-    });
-  }
-
-  private login() {
+  private login(): void {
     if (!this.connectivityService.isOnline()) {
       this.dialogService.alert("Racket'O'Meter requires an internet connection to log in.");
       return;
@@ -123,7 +98,7 @@ export class LoginComponent implements OnInit {
       .then((data) => {
         this.isAuthenticating = false;
         if (data) {
-          this.router.navigate(["bluetooth"]);
+          this.router.navigate(["dashboard"]);
         }
       })
       .catch((message) => {
@@ -141,18 +116,10 @@ export class LoginComponent implements OnInit {
     this.dialogService.alert("Registration is not possible at the time.");
   }
 
-  private showMainContent() {
-    const mainContainer = this.mainContainer.nativeElement as View;
+  private showContent(): void {
     const formControls = this.formControls.nativeElement as View;
     const signUpStack = this.signUpStack.nativeElement as View;
     const animations = [];
-
-    // Show the main container. The main container will
-    // not immediately appear because their opacity is set to 0 in CSS.
-    mainContainer.style.visibility = "visible";
-
-    // Fade in the main container over one half second.
-    animations.push({ target: mainContainer, opacity: 1, duration: 500 });
 
     // Slide up the form controls and sign up container.
     animations.push({ target: signUpStack, translate: { x: 0, y: 0 }, opacity: 1, delay: 500, duration: 150 });
@@ -166,12 +133,8 @@ export class LoginComponent implements OnInit {
     const emailTextField = this.email.nativeElement as TextField;
     const passwordTextField = this.password.nativeElement as TextField;
 
-    const mainTextColor = new Color(this.isLoggingIn ? "black" : "#C4AFB4");
+    const mainTextColor = new Color(this.isLoggingIn ? "black" : "#003600");
     emailTextField.color = mainTextColor;
     passwordTextField.color = mainTextColor;
-
-    const hintColor = new Color(this.isLoggingIn ? "#ACA6A7" : "#C4AFB4");
-    setHintColor({ view: emailTextField, color: hintColor });
-    setHintColor({ view: passwordTextField, color: hintColor });
   }
 }
