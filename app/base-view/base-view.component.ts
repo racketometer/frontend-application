@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
 
 import { GridLayout } from "ui/layouts/grid-layout";
 import { Page } from "ui/page";
@@ -13,10 +19,12 @@ import { Animation } from "ui/animation";
 export class BaseViewComponent implements OnInit {
   @ViewChild("background") public background: ElementRef;
   @ViewChild("mainContainer") public mainContainer: ElementRef;
+  /**
+   * Enable animations.
+   */
+  @Input() public animate: boolean;
 
-  constructor(
-    private page: Page
-  ) { }
+  constructor(private page: Page) { }
 
   public ngOnInit() {
     this.page.actionBarHidden = true;
@@ -25,15 +33,21 @@ export class BaseViewComponent implements OnInit {
 
   public startBackgroundAnimation() {
     const background = this.background.nativeElement as GridLayout;
-
-    background.animate({
-      scale: { x: 1.0, y: 1.0 },
-      duration: 10000,
-    });
+    if (this.animate) {
+      background.animate({
+        scale: { x: 1.0, y: 1.0 },
+        duration: 10000,
+      });
+    }
   }
 
   private showMainContent() {
     const mainContainer = this.mainContainer.nativeElement as View;
+    if (!this.animate) {
+      mainContainer.opacity = 1;
+      return;
+    }
+
     const animations = [];
 
     animations.push({ target: mainContainer, opacity: 1, duration: 500 });

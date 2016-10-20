@@ -1,8 +1,8 @@
 <GridLayout>
 
   <GridLayout #background
-    scaleX="1.4"
-    scaleY="1.4"
+    [scaleX]="animate ? 1.4 : 1.0"
+    [scaleY]="animate ? 1.4 : 1.0"
     class="background"
     (loaded)="startBackgroundAnimation()"></GridLayout>
 
