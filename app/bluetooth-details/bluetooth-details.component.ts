@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { Page } from "ui/page";
 
 import { BluetoothService, SessionService, User } from "../shared";
 
@@ -14,13 +13,11 @@ export class BluetoothDetailsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private page: Page,
     private bluetoothService: BluetoothService,
     private sessionService: SessionService,
   ) {  }
 
   public ngOnInit() {
-    this.page.actionBarHidden = true;
     this.user = this.sessionService.getCurrentSession().user;
   }
 
@@ -30,5 +27,6 @@ export class BluetoothDetailsComponent implements OnInit {
   public start(): void {
     this.sessionService.startCurrentSession();
     // TODO: Route someplace?
+    this.router.navigate(["startedSessions"]);
   }
 }
