@@ -7,8 +7,9 @@
     (loaded)="startBackgroundAnimation()"></GridLayout>
 
   <StackLayout #mainContainer class="main-container">
-
+    <ContentView [visibility]="hideNavigation ? 'collapsed' : 'visible'">
+      <rom-tabs></rom-tabs>
+    </ContentView>
     <ng-content></ng-content>
-
   </StackLayout>
 </GridLayout>

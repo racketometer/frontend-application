@@ -24,6 +24,11 @@ export class BaseViewComponent implements OnInit {
    */
   @Input() public animate: boolean;
 
+  /**
+   * Hide navigation tabs.
+   */
+  @Input() public hideNavigation: boolean;
+
   constructor(private page: Page) { }
 
   public ngOnInit() {
