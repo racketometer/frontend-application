@@ -26,7 +26,6 @@ export class BluetoothDetailsComponent implements OnInit {
    */
   public start(): void {
     this.sessionService.startCurrentSession();
-    // TODO: Route someplace?
     this.router.navigate(["startedSessions"]);
   }
 }

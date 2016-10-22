@@ -53,11 +53,6 @@ export class BaseViewComponent implements OnInit {
       return;
     }
 
-    const animations = [];
-
-    animations.push({ target: mainContainer, opacity: 1, duration: 500 });
-
-    // Kick off the animation queue
-    new Animation(animations, false).play();
+    mainContainer.animate({ opacity: 1, duration: 500 });
   }
 }

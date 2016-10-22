@@ -1,19 +1,19 @@
 <rom-base-view>
 
-	<GridLayout rows="auto, *, auto">
+  <GridLayout rows="auto, *, auto">
 
-		<StackLayout row="0" class="stats" orientation="horizontal">
-			<rom-tile text="Total records" value="10260"></rom-tile>
-			<rom-tile text="Active users" value="89"></rom-tile>
-			<rom-tile text="Total users" value="500"></rom-tile>
-		</StackLayout>
+    <StackLayout row="0" class="stats" orientation="horizontal">
+      <rom-tile text="Total records" value="10260"></rom-tile>
+      <rom-tile text="Active users" value="89"></rom-tile>
+      <rom-tile text="Total users" value="500"></rom-tile>
+    </StackLayout>
 
-		<StackLayout row="2" class="buttons" orientation="horizontal">
-			<Button text="Log out" (tap)="goTo('login')"></Button>
-			<Button text="New user" (tap)="goTo('newUser')"></Button>
-			<Button text="Started sessions" (tap)="goTo('startedSessions')"></Button>
-		</StackLayout>
+    <StackLayout row="2" class="buttons" orientation="horizontal">
+      <Button text="Log out" (tap)="goTo('login')"></Button>
+      <Button text="New user" (tap)="goTo('newUser')"></Button>
+      <Button text="Started sessions" (tap)="goTo('startedSessions')"></Button>
+    </StackLayout>
 
-	</GridLayout>
+  </GridLayout>
 
 </rom-base-view>
