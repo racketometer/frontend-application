@@ -25,6 +25,7 @@
     }
   },
   "scripts": {
+    "test-ios": "tns test ios --bundle --emulator",
     "tslint": "tslint \"app/**/*.ts\"",
     "android": "tns livesync android --watch --bundle",
     "android-emulator": "tns livesync android --emulator --watch --bundle",
@@ -56,6 +57,7 @@
   },
   "devDependencies": {
     "@types/chai": "3.4.34",
+    "@types/jasmine": "2.5.35",
     "babel-traverse": "6.16.0",
     "babel-types": "6.16.0",
     "babylon": "6.12.0",
