@@ -29,7 +29,8 @@
     "android": "tns livesync android --watch --bundle",
     "android-emulator": "tns livesync android --emulator --watch --bundle",
     "ios": "tns livesync ios --emulator --bundle --watch",
-    "clean": "rimraf platforms/ && rimraf node_modules/ && rimraf lib/ && rimraf hooks"
+    "clean": "rimraf platforms/ && rimraf node_modules/ && rimraf lib/ && rimraf hooks",
+    "contributes": "githubcontrib --owner racketometer --repo frontend-application --cols 2 --sortOrder desc --showlogin true | pbcopy && echo 'Contributors are in the clipboard'"
   },
   "dependencies": {
     "@angular/common": "2.1.0",
@@ -60,6 +61,7 @@
     "babylon": "6.12.0",
     "codelyzer": "0.0.28",
     "filewalker": "0.1.3",
+    "github-contributors-list": "1.2.2",
     "jasmine-core": "2.5.2",
     "karma": "1.3.0",
     "karma-jasmine": "1.0.2",
