@@ -1,6 +1,6 @@
 env:
     global:
-        - NODE_VERSION=4.4.7
+        - NODE_VERSION=4.6.1
 
 language: android
 
@@ -38,4 +38,5 @@ install:
 script:
     - npm run tslint
     - tns build android
+    - tns build ios
     # - tns test android --emulator --justlaunch
