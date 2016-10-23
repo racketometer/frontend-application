@@ -1,0 +1,15 @@
+<GridLayout>
+
+  <GridLayout #background
+    [scaleX]="animate ? 1.4 : 1.0"
+    [scaleY]="animate ? 1.4 : 1.0"
+    class="background"
+    (loaded)="startBackgroundAnimation()"></GridLayout>
+
+  <StackLayout #mainContainer class="main-container">
+    <ContentView [visibility]="hideNavigation ? 'collapsed' : 'visible'">
+      <rom-tabs></rom-tabs>
+    </ContentView>
+    <ng-content></ng-content>
+  </StackLayout>
+</GridLayout>

@@ -1,19 +1,21 @@
 import { NativeScriptModule } from "nativescript-angular/platform";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NgModule } from "@angular/core";
-import { loginRouting } from "./login.routing";
-import { LoginComponent } from "./login.component";
+import { dashboardRouting } from "./dashboard.routing";
+import { DashboardComponent } from "./dashboard.component";
 import { BaseViewModule } from "../base-view";
+import { TileComponent } from "./tile/tile.component";
 
 @NgModule({
   imports: [
     BaseViewModule,
-    loginRouting,
-    NativeScriptFormsModule,
     NativeScriptModule,
+    NativeScriptFormsModule,
+    dashboardRouting,
   ],
   declarations: [
-    LoginComponent,
+    DashboardComponent,
+    TileComponent,
   ],
 })
-export class LoginModule {}
+export class DashboardModule { }

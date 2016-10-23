@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ItemEventData } from "ui/list-view";
-import { Page } from "ui/page";
 
 import {
   Session,
@@ -18,12 +17,10 @@ export class StartedSessionsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private page: Page,
     private sessionService: SessionService
   ) { }
 
   public ngOnInit() {
-    this.page.actionBarHidden = true;
     this.startedSessions = this.sessionService.getStartedSessions();
   }
 

@@ -93,5 +93,6 @@ export class SessionService {
     session2.user = user2;
     session2.startedAt = new Date();
     this.startedSessions.push(session2);
+    this.currentSession = session1;
   }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { Page } from "ui/page";
 
 import { DialogService } from "../nativescript-services";
 
@@ -20,16 +19,18 @@ export class NewUserComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private page: Page,
     private userService: UserService,
     private dialogService: DialogService
   ) {
   }
 
-  public ngOnInit() {
-    this.page.actionBarHidden = true;
+  public ngOnInit(): void {
     this.user = new User();
     this.user.allowSharing = false;
+  }
+
+  public back(): void {
+    this.router.navigate(["dashboard"]);
   }
 
   /**

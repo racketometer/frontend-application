@@ -1,19 +1,12 @@
-<GridLayout>
+<rom-base-view>
+  <StackLayout>
 
-  <GridLayout
-    class="background"></GridLayout>
-
-  <StackLayout
-    class="main-container">
-
-    <Label
-      class="main-label"
-      text="New user"></Label>
+    <Label class="main-label" text="New user"></Label>
 
     <GridLayout
       class="form-controls"
       rows="auto, auto, auto, auto, auto, auto"
-      columns="*, *">
+      columns="*, *, *">
 
       <TextField
         hint="First name"
@@ -39,19 +32,20 @@
         returnKeyType="next"
         autocorrect="false"
         autocapitalizationType="none"
-        row="1"
-        colSpan="2"
+        row="0"
+        col="2"
         [(ngModel)]="user.email"></TextField>
 
       <Label
         class="birthday-label"
         text="Birthday"
-        row="2"
-        colSpan="2"></Label>
+        row="1"
+        col="0"></Label>
 
       <DatePicker
         class="birthday-picker"
-        row="3"
+        row="1"
+        col="1"
         colSpan="2"
         [(ngModel)]="user.birthday"></DatePicker>
 
@@ -59,20 +53,20 @@
         hint="Years of experience"
         keyboardType="number"
         returnKeyType="next"
-        row="4"
-        colSpan="2"
+        row="2"
+        col="0"
         [(ngModel)]="yearsOfExperience"></TextField>
 
       <Label
         class="allow-sharing-label"
         text="Share data?"
-        row="5"
-        col="0"></Label>
+        row="2"
+        col="1"></Label>
 
       <Switch
         class="allow-sharing-switch"
-        row="5"
-        col="1"
+        row="2"
+        col="2"
         [(ngModel)]="user.allowSharing"></Switch>
 
     </GridLayout>
@@ -81,7 +75,10 @@
       text="Next"
       class="submit-button"
       (tap)="submit()"></Button>
+    <Button
+      text="Back"
+      class="submit-button back"
+      (tap)="back()"></Button>
 
   </StackLayout>
-
-</GridLayout>
+</rom-base-view>

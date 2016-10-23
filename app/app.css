@@ -25,8 +25,3 @@ TextField {
 .bottom-bar {
   margin-bottom: 45;
 }
-
-.border {
-  background-color: black;
-  height: 1;
-}
