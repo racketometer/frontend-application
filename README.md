@@ -1,6 +1,6 @@
 # Racket O Meter app
 
-[![Build Status](https://travis-ci.org/racketometer/frontend-application.svg?branch=master)](https://travis-ci.org/racketometer/frontend-application)
+<!--[![Build Status](https://travis-ci.org/racketometer/frontend-application.svg?branch=master)](https://travis-ci.org/racketometer/frontend-application)-->
 [![dependencies Status](https://david-dm.org/racketometer/frontend-application/status.svg)](https://david-dm.org/racketometer/frontend-application)
 [![devDependencies Status](https://david-dm.org/racketometer/frontend-application/dev-status.svg)](https://david-dm.org/racketometer/frontend-application?type=dev)
 
