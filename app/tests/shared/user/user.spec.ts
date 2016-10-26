@@ -1,10 +1,6 @@
 import "reflect-metadata";
 import { User } from "../../../shared";
 
-declare var describe: any;
-declare var expect: any;
-declare var it: any;
-
 describe("Email validation", function() {
   const user = new User();
 
