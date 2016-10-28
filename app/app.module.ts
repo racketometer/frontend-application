@@ -1,22 +1,23 @@
 import { NgModule } from "@angular/core";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { NativeScriptModule } from "nativescript-angular/platform";
-import ApolloClient, { createNetworkInterface } from "apollo-client";
+import { default as ApolloClient, createNetworkInterface } from "apollo-client";
 import { ApolloModule } from "angular2-apollo";
 import { NativeScriptServicesModule } from "./nativescript-services";
 import { authProviders, appRoutes } from "./app.routes";
 import { AppComponent } from "./app.component";
 
 import {
+  BluetoothService,
   LoginService,
   OverviewService,
-  BluetoothService,
+  PersistenceService,
   SessionService,
   setStatusBarColors,
   UserService,
 } from "./shared";
 
-import { LoginModule } from "./login/Login.module";
+import { LoginModule } from "./login/login.module";
 import { NewUserModule } from "./new-user/new-user.module";
 import { DashboardModule } from "./dashboard/dashboard.module";
 import { BluetoothModule } from "./bluetooth/bluetooth.module";
@@ -28,7 +29,9 @@ declare var process: any;
 const IP = process.env.IP;
 
 const client = new ApolloClient({
-  networkInterface: createNetworkInterface(`http://${IP}:8080/graphql`),
+  networkInterface: createNetworkInterface({
+    uri: `http://${IP}:8080/graphql`,
+  }),
 });
 
 setStatusBarColors();
@@ -36,10 +39,10 @@ setStatusBarColors();
 @NgModule({
   providers: [
     authProviders,
+    BluetoothService,
     LoginService,
     OverviewService,
-    BluetoothService,
-    authProviders,
+    PersistenceService,
     SessionService,
     UserService,
   ],
