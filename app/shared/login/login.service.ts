@@ -1,19 +1,22 @@
 import { Injectable } from "@angular/core";
-import { getString, setString } from "application-settings";
 import { Angular2Apollo } from "angular2-apollo";
 import gql from "graphql-tag";
 
-import { User, Login } from "../";
-
-const tokenKey = "token";
+import { User, Login, PersistenceService } from "../";
 
 @Injectable()
 export class LoginService {
+  private tokenKey: string = "loginToken";
+  private token: string;
+
   get isLoggedIn(): boolean {
-    return !!getString(tokenKey);
+    return !!this.token;
   }
 
-  constructor(private angularApollo: Angular2Apollo) { }
+  constructor(private angularApollo: Angular2Apollo, private persistence: PersistenceService) {
+    persistence.read<string>(this.tokenKey)
+      .then(token => this.token = token, err => console.log("LoginService.ctor(): No stored token", err));
+  }
 
   public login(user: Login): Promise<User> {
     console.log(`LoginService.login(): Email: '${user.email}' Pass: '${user.password}'`);
@@ -34,6 +37,8 @@ export class LoginService {
       console.log("LoginService.login(): Success: ", JSON.stringify(result));
       if (result.data != null) {
         this.token = "2131";
+        this.persistence.write(this.tokenKey, this.token)
+          .catch(err => console.log("LoginService.login(): Persist token failed", err));
         return result.data.login;
       }
     }).catch((e, c) => {
@@ -43,7 +48,7 @@ export class LoginService {
   }
 
   public logoff() {
-    this.token = "";
+    this.clearToken();
   }
 
   public resetPassword(email) {
@@ -55,10 +60,9 @@ export class LoginService {
     return Promise.reject(error.message);
   }
 
-  private get token(): string {
-    return getString(tokenKey);
-  }
-  private set token(theToken: string) {
-    setString(tokenKey, theToken);
+  private clearToken(): Promise<string> {
+    this.token = "";
+    return this.persistence.write(this.tokenKey, "")
+      .catch(err => console.log("LoginService.logoff(): Faild clear token", err));
   }
 }
