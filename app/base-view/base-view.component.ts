@@ -9,7 +9,6 @@ import {
 import { GridLayout } from "ui/layouts/grid-layout";
 import { Page } from "ui/page";
 import { View } from "ui/core/view";
-import { Animation } from "ui/animation";
 
 @Component({
   selector: "rom-base-view",
