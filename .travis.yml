@@ -41,5 +41,4 @@ install:
 script:
     - npm run tslint
     - tns build android
-    - tns build ios
     # - tns test android --emulator --justlaunch
