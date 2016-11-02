@@ -17,11 +17,12 @@ import {
   UserService,
 } from "./shared";
 
+import { BluetoothDetailsModule } from "./bluetooth-details/bluetooth-details.module";
+import { BluetoothModule } from "./bluetooth/bluetooth.module";
+import { ChangePasswordModule } from "./change-password/change-password.module";
+import { DashboardModule } from "./dashboard/dashboard.module";
 import { LoginModule } from "./login/login.module";
 import { NewUserModule } from "./new-user/new-user.module";
-import { DashboardModule } from "./dashboard/dashboard.module";
-import { BluetoothModule } from "./bluetooth/bluetooth.module";
-import { BluetoothDetailsModule } from "./bluetooth-details/bluetooth-details.module";
 import { SessionResultModule } from "./session-result/session-result.module";
 import { StartedSessionsModule } from "./started-sessions/started-sessions.module";
 
@@ -50,6 +51,7 @@ setStatusBarColors();
     ApolloModule.withClient(client),
     BluetoothDetailsModule,
     BluetoothModule,
+    ChangePasswordModule,
     DashboardModule,
     LoginModule,
     NativeScriptModule,
