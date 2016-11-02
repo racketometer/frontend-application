@@ -23,6 +23,9 @@ cache:
         - $HOME/.gradle/caches/
         - $HOME/.gradle/wrapper/
 
+before_install:
+    - sh get-nativescript-ui-pro.sh
+
 install:
     - nvm install $NODE_VERSION
     - npm install -g nativescript --ignore-scripts
