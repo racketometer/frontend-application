@@ -48,12 +48,10 @@ $ tns test android --emulator
 
 <h2 id="contributors">Contributors</h2>
 
-The following is a list of all the people that have helped build Groceries. Thanks for your contributions!
-[<img alt="Crevil" src="https://avatars.githubusercontent.com/u/6881694?v=3&s=117" width="117">](https://github.com/Crevil) |[<img alt="Karnich" src="https://avatars.githubusercontent.com/u/6881674?v=3&s=117" width="117">](https://github.com/Karnich) |
-:---: |:---: |
-[Crevil](https://github.com/Crevil) |[Karnich](https://github.com/Karnich) |
+The following is a list of all the people that have helped build app. Thanks for your contributions!
+
+[<img alt="Crevil" src="https://avatars.githubusercontent.com/u/6881694?v=3&s=117" width="117">](https://github.com/Crevil)[<img alt="Karnich" src="https://avatars.githubusercontent.com/u/6881674?v=3&s=117" width="117">](https://github.com/Karnich)
 
 <!-- Note: The table above get generated with the following commands -->
-<!-- npm install -g github-contributors-list -->
-<!-- githubcontrib --owner racketometer --repo frontend-application --cols 2 --sortOrder desc --showlogin true | pbcopy -->
+<!-- npm run contributes -->
 <!-- paste the result into this section -->
