@@ -6,6 +6,6 @@ import { Component, Input } from "@angular/core";
   styleUrls: ["dashboard/tile/tile-common.css"],
 })
 export class TileComponent {
-  @Input() private text: string;
-  @Input() private value: string;
+  @Input() public text: string;
+  @Input() public value: string;
 }

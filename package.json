@@ -31,7 +31,7 @@
     "android-emulator": "tns livesync android --emulator --watch --bundle",
     "ios": "tns livesync ios --emulator --bundle --watch",
     "clean": "rimraf platforms/ && rimraf node_modules/ && rimraf lib/ && rimraf hooks",
-    "contributes": "githubcontrib --owner racketometer --repo frontend-application --cols 2 --sortOrder desc --showlogin true | pbcopy && echo 'Contributors are in the clipboard'"
+    "contributes": "githubcontrib --owner racketometer --repo frontend-application --cols 2 --sortOrder desc | pbcopy && echo 'Contributors are in the clipboard'"
   },
   "dependencies": {
     "@angular/common": "2.1.2",

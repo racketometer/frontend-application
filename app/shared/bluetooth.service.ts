@@ -32,7 +32,7 @@ export class BluetoothService {
       return bluetooth.startScanning({
         serviceUUIDs: [],
         seconds: this.scanTime,
-        onDiscovered: (peripheral: bluetooth.Peripheral) => callback(peripheral)
+        onDiscovered: (peripheral: bluetooth.Peripheral) => callback(peripheral),
       });
     });
   }
@@ -64,7 +64,7 @@ export class BluetoothService {
     bluetooth.read({
       peripheralUUID: ID,
       serviceUUID: "F000AA00-0451-4000-B000-000000000000",
-      characteristicUUID: "F000AA01-0451-4000-B000-000000000000"
+      characteristicUUID: "F000AA01-0451-4000-B000-000000000000",
     }).then((result) => {
       console.log(JSON.stringify(result));
     }, (err) => {

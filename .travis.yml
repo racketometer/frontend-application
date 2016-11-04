@@ -23,6 +23,9 @@ cache:
         - $HOME/.gradle/caches/
         - $HOME/.gradle/wrapper/
 
+before_install:
+    - sh get-nativescript-ui-pro.sh
+
 install:
     - nvm install $NODE_VERSION
     - npm install -g nativescript --ignore-scripts
@@ -38,5 +41,4 @@ install:
 script:
     - npm run tslint
     - tns build android
-    - tns build ios
     # - tns test android --emulator --justlaunch
