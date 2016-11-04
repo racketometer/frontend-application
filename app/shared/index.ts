@@ -5,3 +5,4 @@ export * from "./persistence";
 export * from "./util";
 export * from "./login";
 export * from "./user";
+export * from "./measurement.model";
