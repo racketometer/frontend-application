@@ -1,5 +1,8 @@
 export class Measurement {
+  // tslint:disable:variable-name
   public _id?: number;
+  public user_id: string;
+  // tslint:enable:variable-name
   public date: Date;
   public uploadedBy: string;
   public data: Array<Array<number>>;
@@ -10,5 +13,4 @@ export class Measurement {
   public sensorNo: string;
   public racketType: string;
   public algorithmVersion: string;
-  public user_id: string;
 }
