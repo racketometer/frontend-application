@@ -30,16 +30,17 @@ export class PersistenceService {
   public write<T>(key: string, data: T): Promise<T> {
     const file = this.getFile();
 
-    return this.read(key).then((readData) => {
-      if (!readData) {
-        readData = {};
+    return file.readText().then((readJsonData) => {
+      if (!readJsonData) {
+        readJsonData = "";
       }
+      const readData = JSON.parse(readJsonData);
 
       readData[key] = data;
 
-      const newData = JSON.stringify(readData);
+      const newJsonData = JSON.stringify(readData);
 
-      return file.writeText(newData);
+      return file.writeText(newJsonData);
     });
   }
 
