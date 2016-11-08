@@ -4,6 +4,7 @@ import { NgModule } from "@angular/core";
 import { newUserRouting } from "./new-user.routing";
 import { NewUserComponent } from "./new-user.component";
 import { BaseViewModule } from "../base-view";
+import { NewUserService } from "./new-user.service";
 
 @NgModule({
   imports: [
@@ -14,6 +15,9 @@ import { BaseViewModule } from "../base-view";
   ],
   declarations: [
     NewUserComponent,
+  ],
+  providers: [
+    NewUserService,
   ],
 })
 export class NewUserModule { }

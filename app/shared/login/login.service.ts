@@ -28,6 +28,12 @@ export class LoginService {
     persistence.read<string>(this.tokenKey)
       .then(token => this.token = token);
   }
+  /**
+   * Get authentication token.
+   */
+  public getToken(): string {
+    return this.token;
+  }
 
   /**
    * Perform a user login.
