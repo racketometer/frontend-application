@@ -14,7 +14,6 @@ import {
   PersistenceService,
   SessionService,
   setStatusBarColors,
-  UserService,
 } from "./shared";
 
 import { BluetoothDetailsModule } from "./bluetooth-details/bluetooth-details.module";
@@ -45,7 +44,6 @@ setStatusBarColors();
     OverviewService,
     PersistenceService,
     SessionService,
-    UserService,
   ],
   imports: [
     ApolloModule.withClient(client),

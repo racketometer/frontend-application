@@ -2,11 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { DialogService } from "../nativescript-services";
+import { User } from "../shared";
 
-import {
-  User,
-  UserService,
-} from "../shared";
+import { NewUserService } from "./new-user.service";
 
 @Component({
   selector: "rom-new-user",
@@ -19,7 +17,7 @@ export class NewUserComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private userService: UserService,
+    private userService: NewUserService,
     private dialogService: DialogService
   ) {
   }
