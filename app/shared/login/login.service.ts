@@ -8,11 +8,13 @@ import {
   IViewer,
   Login,
   PersistenceService,
+  User,
 } from "../";
 
 @Injectable()
 export class LoginService {
   public oldPassword: string;
+  public user: User;
   private tokenKey: string = "loginToken";
   private token: string;
 
@@ -63,6 +65,7 @@ export class LoginService {
           return Promise.reject<IViewer>("User not found");
         }
         this.token = viewer.token;
+        this.user = viewer.user;
         this.persistence.write(this.tokenKey, this.token)
           .catch(err => this.log("login", "Persist token failed", err));
 

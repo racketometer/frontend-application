@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { DialogService } from "../nativescript-services";
-import { User } from "../shared";
+import { User, LoginService } from "../shared";
 
 import { NewUserService } from "./new-user.service";
 
@@ -12,19 +12,22 @@ import { NewUserService } from "./new-user.service";
   styleUrls: ["new-user/new-user-common.css", "new-user/new-user.component.css"],
 })
 export class NewUserComponent implements OnInit {
+  public newUser = new User();
   public user: User;
   public yearsOfExperience: string;
 
   constructor(
     private router: Router,
     private userService: NewUserService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private loginService: LoginService
   ) {
   }
 
   public ngOnInit(): void {
-    this.user = new User();
-    this.user.allowSharing = false;
+    this.newUser = new User();
+    this.newUser.allowSharing = false;
+    this.user = this.loginService.user;
   }
 
   public back(): void {
@@ -40,8 +43,8 @@ export class NewUserComponent implements OnInit {
       return;
     }
     this.setStartedPlaying();
-
-    this.userService.newUser(this.user)
+    console.log(this.newUser);
+    this.userService.newUser(this.newUser)
       .then(() => {
         this.router.navigate(["startedSessions"]);
       })
@@ -57,7 +60,7 @@ export class NewUserComponent implements OnInit {
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear();
     const currentMonth = currentDate.getMonth();
-    this.user.startedPlaying = new Date(currentYear - parseInt(this.yearsOfExperience, 10), currentMonth);
+    this.newUser.startedPlaying = new Date(currentYear - parseInt(this.yearsOfExperience, 10), currentMonth);
   }
 
   /**
@@ -69,6 +72,6 @@ export class NewUserComponent implements OnInit {
       return false;
     }
 
-    return this.user.isValid();
+    return this.newUser.isValid();
   }
 }
