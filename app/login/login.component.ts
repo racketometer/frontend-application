@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
 
     this.dialogService.prompt({
       title: "Forgot Password",
-      message: "Enter the email address you used to register for Groceries to reset your password.",
+      message: "Enter the email address you used to register for RacketOMeter to reset your password.",
       okButtonText: "Ok",
       cancelButtonText: "Cancel",
     }).then((data) => {
