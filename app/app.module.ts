@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { NativeScriptModule } from "nativescript-angular/platform";
-import { default as ApolloClient, createNetworkInterface } from "apollo-client";
+import { ApolloClient, createNetworkInterface } from "apollo-client";
 import { ApolloModule } from "angular2-apollo";
 import { NativeScriptServicesModule } from "./nativescript-services";
 import { authProviders, appRoutes } from "./app.routes";
