@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Angular2Apollo } from "angular2-apollo";
+import { Observable } from "rxjs";
 import gql from "graphql-tag";
 
 import { ConnectivityService } from "../nativescript-services";
@@ -17,18 +18,17 @@ export class NewUserService {
    * Create new user with type player.
    * @param user The user.
    */
-  public newUser(user: User): Promise<User | void> {
+  public newUser(user: User): Observable<User> {
     const token = this.login.getToken();
     if (!token) {
-      return Promise.reject("No authentication token");
+      return Observable.throw("No authentication token");
     }
 
     if (!this.connectivityService.isOnline()) {
       this.storeForLaterPush(user);
-      return Promise.resolve(user);
+      return Observable.from([user]);
     }
-
-    return (this.apollo
+    return this.apollo
       .mutate({
         mutation: gql`
           mutation newUser($token: String!, $user: AutoUser!) {
@@ -43,10 +43,11 @@ export class NewUserService {
           token,
           user,
         },
-      }) as Promise<void>)
-      .catch((error) => {
+      }).map(result => {
+        return result.data as User;
+      }).catch((error, caught) => {
         console.error("UserService.newUser(): Error:", error);
-        return Promise.reject(error);
+        return caught;
       });
   }
 

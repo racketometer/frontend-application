@@ -41,13 +41,11 @@ export class NewUserComponent implements OnInit {
     }
     this.setStartedPlaying();
 
-    this.userService.newUser(this.user)
-      .then(() => {
-        this.router.navigate(["startedSessions"]);
-      })
-      .catch((err) => {
-        this.dialogService.alert("Email in use");
-      });
+    this.userService.newUser(this.user).subscribe(() => {
+      this.router.navigate(["startedSessions"]);
+    }, (error) => {
+      this.dialogService.alert("Email in use");
+    });
   }
 
   /**
