@@ -1,10 +1,7 @@
 <GridLayout>
 
   <GridLayout #background
-    [scaleX]="animate ? 1.4 : 1.0"
-    [scaleY]="animate ? 1.4 : 1.0"
-    class="background"
-    (loaded)="startBackgroundAnimation()"></GridLayout>
+    class="background"></GridLayout>
 
   <StackLayout #mainContainer class="main-container">
     <ContentView [visibility]="hideNavigation ? 'collapsed' : 'visible'">

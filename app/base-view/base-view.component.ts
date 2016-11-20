@@ -33,14 +33,15 @@ export class BaseViewComponent implements OnInit {
   public ngOnInit() {
     this.page.actionBarHidden = true;
     this.showMainContent();
+    this.startBackgroundAnimation();
   }
 
   public startBackgroundAnimation() {
     const background = this.background.nativeElement as GridLayout;
     if (this.animate) {
       background.animate({
-        scale: { x: 1.0, y: 1.0 },
-        duration: 10000,
+        scale: { x: 1.2, y: 1.2 },
+        duration: 15000,
       });
     }
   }
