@@ -3,11 +3,6 @@
   opacity: 0;
 }
 
-.main-label {
-  horizontal-align: center;
-  color: black;
-}
-
 Button, TextField {
   margin-left: 16;
   margin-right: 16;

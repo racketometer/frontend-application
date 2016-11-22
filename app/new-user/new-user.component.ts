@@ -43,7 +43,6 @@ export class NewUserComponent implements OnInit {
       return;
     }
     this.setStartedPlaying();
-    console.log(this.newUser);
     this.userService.newUser(this.newUser)
       .then(() => {
         this.router.navigate(["startedSessions"]);

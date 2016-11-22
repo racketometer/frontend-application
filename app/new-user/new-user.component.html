@@ -5,8 +5,8 @@
 
     <GridLayout
       class="form-controls"
-      rows="auto, auto, auto, auto, auto, auto"
-      columns="*, *, *, *">
+      rows="auto, auto, auto, auto"
+      columns="*, *, *">
 
       <TextField
         hint="First name"
@@ -37,7 +37,7 @@
         [(ngModel)]="newUser.email"></TextField>
 
       <Label
-        class="birthday-label"
+        class="default-margin"
         text="Birthday"
         row="1"
         col="0"></Label>
@@ -58,27 +58,27 @@
         [(ngModel)]="yearsOfExperience"></TextField>
 
       <Label
-        class="allow-sharing-label"
+        class="default-margin"
         text="Share data?"
         row="2"
         col="1"></Label>
 
       <Switch
-        class="allow-sharing-switch"
+        class="default-margin"
         row="2"
         col="2"
         [(ngModel)]="newUser.allowSharing"></Switch>
 
       <Label 
         visibility="{{ user.isConsultant ? 'visible' : 'collapsed' }}"
-        class="allow-sharing-label"
+        class="default-margin"
         text="Coach?"
         row="3"
         col="1"></Label>
 
       <Switch
         visibility="{{ user.isConsultant ? 'visible' : 'collapsed'}}"
-        class="allow-sharing-switch"
+        class="default-margin"
         row="3"
         col="2"
         [(ngModel)]="newUser.isCoach"></Switch>
