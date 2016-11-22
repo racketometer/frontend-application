@@ -40,7 +40,6 @@ export class TabComponent implements OnInit {
     if (line.ios) {
       line.animate({
         duration: 1000,
-        delay: 5000,
         scale: { x: 1.0, y: 1.0 },
         curve: AnimationCurve.easeInOut,
       });
