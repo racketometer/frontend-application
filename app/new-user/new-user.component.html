@@ -1,11 +1,11 @@
 <rom-base-view>
   <StackLayout>
 
-    <Label class="main-label" text="New user"></Label>
+    <Label class="main-label" text="New User"></Label>
 
     <GridLayout
       class="form-controls"
-      rows="auto, auto, auto, auto, auto, auto"
+      rows="auto, auto, auto, auto"
       columns="*, *, *">
 
       <TextField
@@ -15,7 +15,7 @@
         autocapitalizationType="words"
         row="0"
         col="0"
-        [(ngModel)]="user.firstName"></TextField>
+        [(ngModel)]="newUser.firstName"></TextField>
 
       <TextField
         hint="Last name"
@@ -24,7 +24,7 @@
         autocapitalizationType="words"
         row="0"
         col="1"
-        [(ngModel)]="user.lastName"></TextField>
+        [(ngModel)]="newUser.lastName"></TextField>
 
       <TextField
         hint="Email Address"
@@ -34,10 +34,10 @@
         autocapitalizationType="none"
         row="0"
         col="2"
-        [(ngModel)]="user.email"></TextField>
+        [(ngModel)]="newUser.email"></TextField>
 
       <Label
-        class="birthday-label"
+        class="default-margin"
         text="Birthday"
         row="1"
         col="0"></Label>
@@ -47,7 +47,7 @@
         row="1"
         col="1"
         colSpan="2"
-        [(ngModel)]="user.birthday"></DatePicker>
+        [(ngModel)]="newUser.birthday"></DatePicker>
 
       <TextField
         hint="Years of experience"
@@ -58,16 +58,30 @@
         [(ngModel)]="yearsOfExperience"></TextField>
 
       <Label
-        class="allow-sharing-label"
+        class="default-margin"
         text="Share data?"
         row="2"
         col="1"></Label>
 
       <Switch
-        class="allow-sharing-switch"
+        class="default-margin"
         row="2"
         col="2"
-        [(ngModel)]="user.allowSharing"></Switch>
+        [(ngModel)]="newUser.allowSharing"></Switch>
+
+      <Label 
+        visibility="{{ user.isConsultant ? 'visible' : 'collapsed' }}"
+        class="default-margin"
+        text="Coach?"
+        row="3"
+        col="1"></Label>
+
+      <Switch
+        visibility="{{ user.isConsultant ? 'visible' : 'collapsed'}}"
+        class="default-margin"
+        row="3"
+        col="2"
+        [(ngModel)]="newUser.isCoach"></Switch>
 
     </GridLayout>
 

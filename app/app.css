@@ -4,6 +4,11 @@ Page {
   background-color: white;
   font-size: 15;
 }
+
+.main-label {
+  horizontal-align: center;
+}
+
 .list-page {
   background-image: url("res://bg");
   background-repeat: no-repeat;

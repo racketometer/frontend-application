@@ -1,14 +1,8 @@
-
-.main-label {
-  horizontal-align: center;
-  color: black;
-}
-
 .birthday-picker {
   height: 120;
 }
 
-Button, TextField, DatePicker, Switch, .birthday-label, .allow-sharing-label {
+Button, TextField, DatePicker, Switch, .default-margin {
   margin-left: 16;
   margin-right: 16;
   margin-bottom: 10;
