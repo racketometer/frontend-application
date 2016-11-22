@@ -1,7 +1,7 @@
 {
   "name": "racket-o-meter-frontend",
   "version": "1.0.0",
-  "description": "A NativeScript-built iOS and Android app for managing grocery lists with Apollo Stack",
+  "description": "Frontend application for the Racket O Meter platform.",
   "repository": {
     "type": "git",
     "url": "https://github.com/racketometer/frontend-application.git"
@@ -42,8 +42,8 @@
     "@angular/platform-browser-dynamic": "2.1.2",
     "@angular/platform-server": "2.1.2",
     "@angular/router": "3.1.2",
-    "angular2-apollo": "0.7.0",
-    "apollo-client": "0.5.2",
+    "angular2-apollo": "0.8.0",
+    "apollo-client": "0.5.6",
     "email-validator": "1.0.7",
     "graphql": "0.7.2",
     "graphql-tag": "0.1.16",

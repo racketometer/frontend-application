@@ -46,8 +46,7 @@ export class ChangePasswordComponent implements OnInit {
           .catch((error) => {
             this.isChanging = false;
             return this.dialogService.alert("Change password failed");
-          })
-          .then(() => this.routerExtensions.backToPreviousPage());
+          }).subscribe(() => { /* */ }, () => { /* */ }, () => this.routerExtensions.backToPreviousPage());
       });
   }
 
