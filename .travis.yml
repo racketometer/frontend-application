@@ -1,6 +1,6 @@
 env:
-    global:
-        - NODE_VERSION=4.6.1
+  global:
+    - NODE_VERSION=4.6.1
 
 language: android
 
@@ -15,30 +15,28 @@ android:
     - sys-img-armeabi-v7a-android-19
 
 before_cache:
-    - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 
 cache:
-    directories:
-        - .nvm
-        - $HOME/.gradle/caches/
-        - $HOME/.gradle/wrapper/
+  directories:
+    - .nvm
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
 
 before_install:
-    - sh get-nativescript-ui-pro.sh
+  - sh get-nativescript-ui-pro.sh
 
 install:
-    - nvm install $NODE_VERSION
-    - npm install -g nativescript --ignore-scripts
-    - tns usage-reporting disable
-    - tns error-reporting disable
-    - npm install
-
-# before_script:
-#     - echo no | android create avd --force -n test -t android-19 -b armeabi-v7a
-#     - emulator -avd test -no-audio -no-window &
-#     - android-wait-for-emulator
+  - nvm install $NODE_VERSION
+  - npm install -g nativescript --ignore-scripts
+  - tns usage-reporting disable
+  - tns error-reporting disable
+  - npm install
 
 script:
-    - npm run tslint
-    - tns build android
-    # - tns test android --emulator --justlaunch
+  - npm run tslint
+  - tns build android
+  - npm run test
+
+after_success:
+  - npm run coverage

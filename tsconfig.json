@@ -16,8 +16,7 @@
     },
     "files": [
         "./references.d.ts",
-        "./app/main.ts",
-        "./app/tests/index.ts"
+        "./app/main.ts"
     ],
     "exclude": [
         "node_modules",
