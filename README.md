@@ -1,6 +1,7 @@
 # Racket O Meter app
 
 [![Build Status](https://travis-ci.org/racketometer/frontend-application.svg?branch=master)](https://travis-ci.org/racketometer/frontend-application)
+[![Coverage Status](https://coveralls.io/repos/github/racketometer/frontend-application/badge.svg?branch=master)](https://coveralls.io/github/racketometer/frontend-application?branch=master)
 [![dependencies Status](https://david-dm.org/racketometer/frontend-application/status.svg)](https://david-dm.org/racketometer/frontend-application)
 [![devDependencies Status](https://david-dm.org/racketometer/frontend-application/dev-status.svg)](https://david-dm.org/racketometer/frontend-application?type=dev)
 
@@ -39,13 +40,16 @@ $ npm run tslint
 
 <h3 id="unit-testing">Unit Testing</h3>
 
-The [integrated unit test runner](http://docs.nativescript.org/core-concepts/testing) with [Jasmine](http://jasmine.github.io/) is used.
+Unit testing is done with [mocha](https://mochajs.org/) and [chai](http://chaijs.com/).
 
 ```
-$ tns test ios --emulator
-$ tns test android --emulator
+$ npm test
 ```
 
+Coverage is generated with [istanbul](https://github.com/gotwarlost/istanbul) and posted to [Coveralls.io](https://coveralls.io/github/racketometer/frontend-application?branch=master).
+```
+$ npm run coverage
+```
 <h2 id="contributors">Contributors</h2>
 
 The following is a list of all the people that have helped build app. Thanks for your contributions!

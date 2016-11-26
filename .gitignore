@@ -11,3 +11,5 @@ platforms/
 tmp/
 typings/
 nativescript-ui-pro.tgz
+.nyc_output/
+coverage/
