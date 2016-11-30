@@ -36,7 +36,6 @@ export class DashboardUserComponent implements OnInit {
   }
 }
 
-
 // taken from nativescript-ui angular chart "getting started" guide
 // http://docs.telerik.com/devtools/nativescript-ui/Controls/Angular/Chart/getting-started
 export class Country {

@@ -7,7 +7,6 @@ import { BaseViewModule } from "../base-view";
 import { TileComponent } from "./tile/tile.component";
 import { ChartDirectiveWrapper } from "../chart-directive-wrapper.module";
 
-
 @NgModule({
   imports: [
     BaseViewModule,

@@ -6,7 +6,6 @@ import { Component, Input, OnInit } from "@angular/core";
   styleUrls: ["base-view/tabs/tabs-common.css"],
 })
 
-
 export class TabsComponent implements OnInit {
 
   /**
