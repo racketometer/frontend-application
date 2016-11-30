@@ -20,6 +20,7 @@ import { BluetoothDetailsModule } from "./bluetooth-details/bluetooth-details.mo
 import { BluetoothModule } from "./bluetooth/bluetooth.module";
 import { ChangePasswordModule } from "./change-password/change-password.module";
 import { DashboardModule } from "./dashboard/dashboard.module";
+import { DashboardUserModule } from "./dashboard-user/dashboard-user.module";
 import { LoginModule } from "./login/login.module";
 import { NewUserModule } from "./new-user/new-user.module";
 import { SessionResultModule } from "./session-result/session-result.module";
@@ -37,13 +38,9 @@ const client = new ApolloClient({
 setStatusBarColors();
 
 @NgModule({
-  providers: [
-    authProviders,
-    BluetoothService,
-    LoginService,
-    OverviewService,
-    PersistenceService,
-    SessionService,
+  bootstrap: [AppComponent],
+  declarations: [
+    AppComponent,
   ],
   imports: [
     ApolloModule.withClient(client),
@@ -51,6 +48,7 @@ setStatusBarColors();
     BluetoothModule,
     ChangePasswordModule,
     DashboardModule,
+    DashboardUserModule,
     LoginModule,
     NativeScriptModule,
     NativeScriptRouterModule,
@@ -60,7 +58,13 @@ setStatusBarColors();
     SessionResultModule,
     StartedSessionsModule,
   ],
-  declarations: [AppComponent],
-  bootstrap: [AppComponent],
+  providers: [
+    authProviders,
+    BluetoothService,
+    LoginService,
+    OverviewService,
+    PersistenceService,
+    SessionService,
+  ],
 })
 export class AppModule { }

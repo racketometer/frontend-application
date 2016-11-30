@@ -1,0 +1,27 @@
+.stats, .buttons {
+  horizontal-align: center;
+}
+
+Button {
+  margin-top: 20;
+  margin-left: 16;
+  margin-right: 16;
+  margin-bottom: 10;
+  padding: 10;
+  background-color: #CB1D00;
+  color: white;
+}
+
+.side-tile {
+  padding-left: 10;
+  padding-right: 10;
+}
+
+.side-layout {
+  width: 180;
+}
+.stroke-chart {
+  margin-left: 7;
+  margin-right: 7;
+  margin-bottom: 3;
+}
