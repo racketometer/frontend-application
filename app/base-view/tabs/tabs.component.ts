@@ -5,7 +5,6 @@ import { Component, Input, OnInit } from "@angular/core";
   templateUrl: "base-view/tabs/tabs.component.html",
   styleUrls: ["base-view/tabs/tabs-common.css"],
 })
-
 export class TabsComponent implements OnInit {
 
   /**
