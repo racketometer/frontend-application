@@ -2,7 +2,7 @@ var bundler = require("nativescript-dev-webpack");
 var webpack = require("webpack");
 
 // Collect the IP address for the GraphQL host from environment variable IP
-var IP = process.env.IP;
+var IP = process.env.ROM_BACKEND_IP;
 
 if (!IP) {
   throw Error("GraphQL IP address not set. Set environment variable 'IP'");
