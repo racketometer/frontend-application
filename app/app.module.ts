@@ -27,11 +27,11 @@ import { SessionResultModule } from "./session-result/session-result.module";
 import { StartedSessionsModule } from "./started-sessions/started-sessions.module";
 
 declare var process: any;
-const IP = process.env.IP;
+const BACKEND_URL = process.env.ROM_BACKEND_IP;
 
 const client = new ApolloClient({
   networkInterface: createNetworkInterface({
-    uri: `http://${IP}:8080/graphql`,
+    uri: BACKEND_URL,
   }),
 });
 
