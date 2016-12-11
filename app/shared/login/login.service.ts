@@ -15,6 +15,7 @@ import {
 @Injectable()
 export class LoginService {
   public oldPassword: string;
+  public isUser: boolean;
   public user: User;
   private tokenKey: string = "loginToken";
   private token: string;
@@ -68,6 +69,10 @@ export class LoginService {
       }
       this.token = viewer.token;
       this.user = viewer.user;
+
+      if (!this.user.isCoach && !this.user.isConsultant) {
+        this.isUser = true;
+      }
       this.persistence.write(this.tokenKey, this.token)
         .catch(err => this.log("login", "Persist token failed", err));
 

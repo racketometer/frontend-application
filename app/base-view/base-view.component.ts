@@ -10,6 +10,8 @@ import { GridLayout } from "ui/layouts/grid-layout";
 import { Page } from "ui/page";
 import { View } from "ui/core/view";
 
+import { LoginService } from "../shared/login";
+
 @Component({
   selector: "rom-base-view",
   templateUrl: "base-view/base-view.component.html",
@@ -28,7 +30,7 @@ export class BaseViewComponent implements OnInit {
    */
   @Input() public hideNavigation: boolean;
 
-  constructor(private page: Page) { }
+  constructor(private page: Page, private loginService: LoginService) { }
 
   public ngOnInit() {
     this.page.actionBarHidden = true;
