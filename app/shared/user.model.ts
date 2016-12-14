@@ -19,6 +19,16 @@ export class User {
   public updatedAt?: string;
   public measurements?: Array<any>;
 
+  constructor(user?: User) {
+    if (user) {
+      for (let key in user) {
+        if (user.hasOwnProperty(key)) {
+          this[key] = user[key];
+        }
+      }
+    }
+  }
+
   /**
    * Validate the user email.
    */

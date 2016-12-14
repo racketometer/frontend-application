@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { Peripheral } from "nativescript-bluetooth";
 
 import { BluetoothService, SessionService, User } from "../shared";
 
@@ -10,6 +11,7 @@ import { BluetoothService, SessionService, User } from "../shared";
 })
 export class BluetoothDetailsComponent implements OnInit {
   public user: User;
+  public racket: Peripheral;
 
   constructor(
     private router: Router,
@@ -18,7 +20,9 @@ export class BluetoothDetailsComponent implements OnInit {
   ) {  }
 
   public ngOnInit() {
-    this.user = this.sessionService.getCurrentSession().user;
+    const {racket, user} = this.sessionService.getCurrentSession();
+    this.racket = racket;
+    this.user = user;
   }
 
   /**

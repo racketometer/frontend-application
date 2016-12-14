@@ -25,6 +25,7 @@ import { LoginModule } from "./login/login.module";
 import { NewUserModule } from "./new-user/new-user.module";
 import { SessionResultModule } from "./session-result/session-result.module";
 import { StartedSessionsModule } from "./started-sessions/started-sessions.module";
+import { UsersModule } from "./users/users.module";
 
 declare var process: any;
 const BACKEND_URL = process.env.ROM_BACKEND_IP;
@@ -57,6 +58,7 @@ setStatusBarColors();
     NewUserModule,
     SessionResultModule,
     StartedSessionsModule,
+    UsersModule,
   ],
   providers: [
     authProviders,

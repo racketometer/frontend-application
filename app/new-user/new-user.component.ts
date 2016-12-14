@@ -27,6 +27,7 @@ export class NewUserComponent implements OnInit {
   public ngOnInit(): void {
     this.newUser = new User();
     this.newUser.allowSharing = false;
+    this.newUser.isCoach = false;
     this.user = this.loginService.user;
   }
 
