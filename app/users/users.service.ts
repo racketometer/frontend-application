@@ -22,7 +22,6 @@ export class UsersService {
     if (!token) {
       return Observable.throw("No authentication token");
     }
-    console.log("--- GET USERS ---")
     return this.apollo
       .query({
         query: gql`

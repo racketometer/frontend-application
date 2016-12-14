@@ -5,7 +5,7 @@ import { ObservableArray } from "data/observable-array";
 
 import {
   User,
-  SessionService
+  SessionService,
 } from "../shared";
 
 import { UsersService } from "./users.service";
