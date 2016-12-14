@@ -6,9 +6,8 @@
     <StackLayout row="1">
       <Label [text]="user.name"></Label>
       <Label [text]="user.email"></Label>
-      <Label [text]="user.birthday"></Label>
-      <Label [text]="user.startedPlaying"></Label>
-      <Label [text]="user.startedPlaying"></Label>
+      <Label [text]="user.birthday | date"></Label>
+      <Label [text]="user.startedPlaying | date"></Label>
       <Label [text]="'Allow sharing: ' + user.allowSharing"></Label>
       <Label [text]="'Racket id: ' + racket.UUID"></Label>
     </StackLayout>

@@ -1,0 +1,21 @@
+.users {
+  margin-left: 10;
+  margin-right: 10;
+}
+
+.user {
+  padding: 12;
+}
+
+.name {
+  font-size: 20;
+}
+
+.email {
+  font-size: 14;
+  color: #806c6d;
+}
+
+.racket {
+  font-size: 16;
+}

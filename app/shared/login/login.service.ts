@@ -62,6 +62,7 @@ export class LoginService {
         email: user.email,
         password: user.password,
       },
+      forceFetch: true,
     }).map((result) => {
       const viewer = result.data.login as IViewer;
       if (!viewer) {

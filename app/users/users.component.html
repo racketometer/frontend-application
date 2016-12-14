@@ -1,0 +1,28 @@
+<rom-base-view>
+  <GridLayout #mainContainer
+    rows="auto, *">
+
+    <Label
+      class="main-label"
+      row="0"
+      text="Users"></Label>
+
+    <ListView
+      class="users"
+      row="1"
+      [items]="users"
+      (itemTap)="onUserTap($event)">
+        <template let-user="item">
+            <StackLayout class="user">
+                <Label
+                  class="name"
+                  [text]='user.name'></Label>
+                <Label
+                  class="email"
+                  [text]='user.email'></Label>
+            </StackLayout>
+        </template>
+    </ListView>
+
+  </GridLayout>
+</rom-base-view>
