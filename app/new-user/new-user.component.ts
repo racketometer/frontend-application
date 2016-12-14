@@ -47,7 +47,6 @@ export class NewUserComponent implements OnInit {
     this.userService.newUser(this.newUser).subscribe(() => {
       this.router.navigate(["startedSessions"]);
     }, (error) => {
-      console.log(error);
       this.dialogService.alert("Email in use");
     });
   }
