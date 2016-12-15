@@ -42,6 +42,7 @@ export class UsersService {
         variables: {
           token,
         },
+        forceFetch: true,
       }).catch((error, caught) => {
         console.error("UsersService.getUsers(): Error:", error);
         return caught;

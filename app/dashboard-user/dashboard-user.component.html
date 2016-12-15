@@ -8,23 +8,19 @@
       <rom-tile text="Total users" value="500"></rom-tile>
     </StackLayout>
 
-    <StackLayout row="1" rowSpan="2" col="0">
-
-      <RadCartesianChart class="stroke-chart">
-        <CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
-        <LinearAxis tkCartesianVerticalAxis></LinearAxis>
-        <BarSeries tkCartesianSeries showLabels="true" seriesName="Bar" stackMode="Stack" [items]="source" categoryProperty="Country"
-          valueProperty="Amount">
-        </BarSeries>
-      </RadCartesianChart>
-
-    </StackLayout>
+    <RadCartesianChart row="1" rowSpan="2" col="0" class="stroke-chart">
+      <CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
+      <LinearAxis tkCartesianVerticalAxis></LinearAxis>
+      <BarSeries tkCartesianSeries showLabels="true" seriesName="Bar" stackMode="Stack" [items]="source" categoryProperty="Country"
+        valueProperty="Amount">
+      </BarSeries>
+    </RadCartesianChart>
 
     <StackLayout row="2" col="1" class="buttons side-layout" orientation="vertical">
       <ContentView class="side-tile">
         <rom-tile text="Last active" value="2d"></rom-tile>
       </ContentView>
-      
+
       <Button text="Log out" (tap)="goTo('login')"></Button>
       <Button text="Started sessions" (tap)="goTo('startedSessions')"></Button>
     </StackLayout>

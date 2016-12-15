@@ -71,9 +71,8 @@ export class LoginService {
       this.token = viewer.token;
       this.user = viewer.user;
 
-      if (!this.user.isCoach && !this.user.isConsultant) {
-        this.isUser = true;
-      }
+      this.isUser = !(this.user.isCoach || this.user.isConsultant);
+
       this.persistence.write(this.tokenKey, this.token)
         .catch(err => this.log("login", "Persist token failed", err));
 
