@@ -16,6 +16,7 @@ export class SessionService {
 
   constructor() {
     this.startedSessions = [];
+    this.currentSession = {};
   }
 
   /**
