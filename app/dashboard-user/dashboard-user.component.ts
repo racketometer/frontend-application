@@ -6,7 +6,7 @@ import { ObservableArray } from "data/observable-array";
 @Component({
   selector: "rom-user-dashboard",
   templateUrl: "dashboard-user/dashboard-user.component.html",
-  styleUrls: ["dashboard-user/dashboard-user-common.css", "dashboard-user/dashboard-user.component.css"],
+  styleUrls: ["dashboard-user/dashboard-user-common.css"],
 })
 export class DashboardUserComponent implements OnInit {
   public source: ObservableArray<Country>;
