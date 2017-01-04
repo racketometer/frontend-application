@@ -7,7 +7,7 @@ import { ConnectivityService } from "../nativescript-services";
 import { LoginService, User } from "../shared";
 
 @Injectable()
-export class NewUserService {
+export class UsersService {
   constructor(
     private apollo: Angular2Apollo,
     private connectivityService: ConnectivityService,
@@ -15,44 +15,42 @@ export class NewUserService {
   ) { }
 
   /**
-   * Create new user with type player.
-   * @param user The user.
+   * Get users created by logged in user.
    */
-  public newUser(user: User): Observable<User> {
+  public getUsers(): Observable<Array<User>> {
     const token = this.login.getToken();
     if (!token) {
       return Observable.throw("No authentication token");
     }
-
-    if (!this.connectivityService.isOnline()) {
-      this.storeForLaterPush(user);
-      return Observable.from([user]);
-    }
     return this.apollo
-      .mutate({
-        mutation: gql`
-          mutation newUser($token: String!, $user: AutoUser!) {
+      .query({
+        query: gql`
+          query getUsers($token: String!) {
             viewer(token: $token) {
-              createAutoUser(user: $user) {
+              users {
                 _id
+                firstName
+                lastName
+                email
+                allowSharing
+                startedPlaying
+                birthday
               }
             }
           }
         `,
         variables: {
           token,
-          user,
         },
-      }).map(result => {
-        return result.data.viewer.createAutoUser as User;
+        forceFetch: true,
+      }).catch((error, caught) => {
+        console.error("UsersService.getUsers(): Error:", error);
+        return caught;
+      })
+      .map(result => {
+        return result.data.viewer.users.map((user) => {
+          return new User(user);
+        });
       });
-  }
-
-  /**
-   * Store user for later push to backend.
-   * @param user The user.
-   */
-  private storeForLaterPush(user: User): void {
-    console.log("Storing user for later push to backend");
   }
 }

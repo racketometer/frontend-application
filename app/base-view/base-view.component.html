@@ -5,7 +5,7 @@
 
   <StackLayout #mainContainer class="main-container">
     <ContentView [visibility]="hideNavigation ? 'collapsed' : 'visible'">
-      <rom-tabs></rom-tabs>
+      <rom-tabs [hideUserTab]="loginService.isUser"></rom-tabs>
     </ContentView>
     <ng-content></ng-content>
   </StackLayout>

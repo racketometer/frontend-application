@@ -31,8 +31,8 @@ export class LoginComponent implements OnInit {
     private dialogService: DialogService
   ) {
     this.user = new Login();
-    this.user.email = "johnny@test.dk";
-    this.user.password = "1234";
+    this.user.email = "";
+    this.user.password = "";
   }
 
   public ngOnInit(): void {
@@ -105,8 +105,13 @@ export class LoginComponent implements OnInit {
       }
 
       if (viewer) {
-        this.router.navigate(["dashboard"]);
-        return;
+        if (!viewer.user.isConsultant && !viewer.user.isCoach) {
+          this.router.navigate(["dashboard-user"]);
+          return;
+        } else {
+          this.router.navigate(["dashboard"]);
+          return;
+        }
       }
     }, (error) => {
       this.dialogService.alert("Credentials do not match any user");

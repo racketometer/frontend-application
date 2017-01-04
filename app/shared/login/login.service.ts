@@ -15,6 +15,7 @@ import {
 @Injectable()
 export class LoginService {
   public oldPassword: string;
+  public isUser: boolean;
   public user: User;
   private tokenKey: string = "loginToken";
   private token: string;
@@ -61,6 +62,7 @@ export class LoginService {
         email: user.email,
         password: user.password,
       },
+      forceFetch: true,
     }).map((result) => {
       const viewer = result.data.login as IViewer;
       if (!viewer) {
@@ -68,6 +70,9 @@ export class LoginService {
       }
       this.token = viewer.token;
       this.user = viewer.user;
+
+      this.isUser = !(this.user.isCoach || this.user.isConsultant);
+
       this.persistence.write(this.tokenKey, this.token)
         .catch(err => this.log("login", "Persist token failed", err));
 

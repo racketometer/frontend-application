@@ -27,6 +27,7 @@ export class NewUserComponent implements OnInit {
   public ngOnInit(): void {
     this.newUser = new User();
     this.newUser.allowSharing = false;
+    this.newUser.isCoach = false;
     this.user = this.loginService.user;
   }
 
@@ -43,7 +44,7 @@ export class NewUserComponent implements OnInit {
       return;
     }
     this.setStartedPlaying();
-    this.userService.newUser(this.user).subscribe(() => {
+    this.userService.newUser(this.newUser).subscribe(() => {
       this.router.navigate(["startedSessions"]);
     }, (error) => {
       this.dialogService.alert("Email in use");
