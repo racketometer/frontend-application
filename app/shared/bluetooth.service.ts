@@ -16,7 +16,10 @@ export class BluetoothService {
       UUID: item.UUID,
       onConnected: (peripheral) => {
         console.log("connected");
-        this.read(item.UUID);
+        // this.read(item.UUID);
+        peripheral.services.forEach(function (service) {
+          console.log("service found: " + JSON.stringify(service));
+        });
       },
       onDisconnected: (peripheral) => {
         console.log("disconnected");
