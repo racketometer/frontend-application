@@ -25,6 +25,7 @@ import { LoginModule } from "./login/login.module";
 import { NewUserModule } from "./new-user/new-user.module";
 import { SessionResultModule } from "./session-result/session-result.module";
 import { StartedSessionsModule } from "./started-sessions/started-sessions.module";
+import { SessionLiveModule } from "./session-live/session-live.module";
 import { UsersModule } from "./users/users.module";
 
 declare var process: any;
@@ -59,6 +60,7 @@ setStatusBarColors();
     SessionResultModule,
     StartedSessionsModule,
     UsersModule,
+    SessionLiveModule,
   ],
   providers: [
     authProviders,
