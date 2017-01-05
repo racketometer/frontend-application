@@ -12,15 +12,15 @@
       <CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
       <LinearAxis tkCartesianVerticalAxis></LinearAxis>
 
-      <SplineSeries tkCartesianSeries showLabels="true" seriesName="Bar" stackMode="Stack" [items]="source" categoryProperty="Time"
+      <SplineSeries tkCartesianSeries seriesName="X" stackMode="Stack" [items]="source" categoryProperty="Time"
         valueProperty="X">
       </SplineSeries>
 
-      <SplineSeries tkCartesianSeries showLabels="true" seriesName="Bar" stackMode="Stack" [items]="source" categoryProperty="Time"
+      <SplineSeries tkCartesianSeries seriesName="Y" stackMode="Stack" [items]="source" categoryProperty="Time"
         valueProperty="Y">
       </SplineSeries>
 
-      <SplineSeries tkCartesianSeries showLabels="true" seriesName="Bar" stackMode="Stack" [items]="source" categoryProperty="Time"
+      <SplineSeries tkCartesianSeries seriesName="Z" stackMode="Stack" [items]="source" categoryProperty="Time"
         valueProperty="Z">
       </SplineSeries>
 
@@ -30,9 +30,8 @@
       <ContentView class="side-tile">
         <rom-tile text="Last active" value="2d"></rom-tile>
       </ContentView>
-
-      <Button text="Log out" (tap)="goTo('login')"></Button>
-      <Button text="Started sessions" (tap)="goTo('startedSessions')"></Button>
+      <Button text="Connect" (tap)="connect()"></Button>
+      <Button text="Start streaming" (tap)="stream()"></Button>
     </StackLayout>
 
   </GridLayout>
