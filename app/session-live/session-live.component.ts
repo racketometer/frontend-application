@@ -3,7 +3,6 @@ import { Router } from "@angular/router";
 import { ObservableArray } from "data/observable-array";
 import { Observable, Subscription } from "rxjs/Rx";
 import { Peripheral } from "nativescript-bluetooth";
-import * as Timer from "timer";
 
 import { BluetoothService, IServiceCharacteristics, SessionService, User } from "../shared";
 
@@ -25,10 +24,7 @@ export interface IAccelerometer {
 export class SessionLiveComponent implements OnInit {
   public source: ObservableArray<IAccelerometer>;
 
-  private observer: Observable<bluetooth.ReadResult>;
-  private requestStream: Observable<bluetooth.ReadResult>;
   private responseStream: Subscription;
-
   private counter: number;
 
   constructor(
@@ -39,22 +35,6 @@ export class SessionLiveComponent implements OnInit {
 
   public ngOnInit() {
     this.source = new ObservableArray(this.getCategoricalSource());
-
-    let config: IServiceCharacteristics = {
-      serviceUUID: "f000aa80-0451-4000-b000-000000000000",
-      characteristicsUUID: "f000aa81-0451-4000-b000-000000000000",
-    }
-
-    this.observer = Observable.create(observer => {
-      Timer.setInterval(() => {
-
-        this.bluetoothService.read(config)
-          .then((result) => {
-            observer.next(result);
-          })
-          .catch(err => observer.error(err));
-      }, 500);
-    });
   }
 
   public goTo(route: string): void {
@@ -62,7 +42,7 @@ export class SessionLiveComponent implements OnInit {
   }
 
   public stream(): void {
-    this.responseStream = this.observer.subscribe(response => {
+    this.responseStream = this.bluetoothService.requestStream.subscribe(response => {
       if (response) {
         const data = new Int16Array(response.value);
         let reading: IAccelerometer = {
