@@ -6,7 +6,7 @@ import { View } from "ui/core/view";
 import { Animation } from "ui/animation";
 
 import { ConnectivityService, DialogService } from "../nativescript-services";
-import { LoginService, Login } from "../shared";
+import { LoginService, Login, SessionService } from "../shared";
 
 @Component({
   selector: "rom-login",
@@ -28,7 +28,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private loginService: LoginService,
     private connectivityService: ConnectivityService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private sessionService: SessionService
   ) {
     this.user = new Login();
     this.user.email = "";
@@ -106,6 +107,7 @@ export class LoginComponent implements OnInit {
 
       if (viewer) {
         if (!viewer.user.isConsultant && !viewer.user.isCoach) {
+          this.sessionService.setCurrentUser(viewer.user);
           this.router.navigate(["dashboard-user"]);
           return;
         } else {

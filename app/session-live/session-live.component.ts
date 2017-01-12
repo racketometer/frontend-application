@@ -1,13 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
 import { ObservableArray } from "data/observable-array";
-import { Observable, Subscription } from "rxjs/Rx";
-import { Peripheral } from "nativescript-bluetooth";
+import { Subscription } from "rxjs/Rx";
 
-import { BluetoothService, IServiceCharacteristics, SessionService, User } from "../shared";
-
-
-import * as bluetooth from "nativescript-bluetooth";
+import { BluetoothService, SessionService } from "../shared";
 
 export interface IAccelerometer {
   X: number;
@@ -25,30 +20,26 @@ export class SessionLiveComponent implements OnInit {
   public source: ObservableArray<IAccelerometer>;
 
   private responseStream: Subscription;
+  private connectedStream: Subscription;
   private counter: number;
 
   constructor(
-    private router: Router,
     private bluetoothService: BluetoothService,
-    private sessionService: SessionService,
+    private sessionService: SessionService
   ) { }
 
   public ngOnInit() {
-    this.source = new ObservableArray(this.getCategoricalSource());
-  }
-
-  public goTo(route: string): void {
-    this.router.navigate([route]);
+    this.source = new ObservableArray([]);
   }
 
   public stream(): void {
     this.responseStream = this.bluetoothService.requestStream.subscribe(response => {
       if (response) {
         const data = new Int16Array(response.value);
-        let reading: IAccelerometer = {
-          X: (data[3] * 1.0) / (32768 / 16),
-          Y: (data[4] * 1.0) / (32768 / 16),
-          Z: (data[5] * 1.0) / (32768 / 16),
+        const reading: IAccelerometer = {
+          X: data[5] / (32768 / 16),
+          Y: data[4] / (32768 / 16),
+          Z: data[3] / (32768 / 16),
           Time: ++this.counter,
         };
         this.source.unshift(reading);
@@ -60,23 +51,11 @@ export class SessionLiveComponent implements OnInit {
     });
   }
 
-  public stopStreaming(): void {
-    this.responseStream.unsubscribe();
-  }
-
   public connect(): void {
-    this.bluetoothService.connect(this.sessionService.getCurrentSession().racket);
-  }
-
-  public initialize(): void {
-    this.bluetoothService.setup();
-  }
-
-  // taken from nativescript-ui angular chart "getting started" guide
-  // http://docs.telerik.com/devtools/nativescript-ui/Controls/Angular/Chart/getting-started
-  public getCategoricalSource(): Array<IAccelerometer> {
-    return [
-      { Time: 0, X: 0, Y: 0, Z: 0 },
-    ];
+    this.connectedStream = this.bluetoothService.connect(this.sessionService.getCurrentSession().racket).subscribe((value) => {
+      if (value) {
+        this.stream();
+      }
+    });
   }
 }

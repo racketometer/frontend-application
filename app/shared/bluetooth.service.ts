@@ -14,13 +14,9 @@ export interface IServiceCharacteristics {
 
 @Injectable()
 export class BluetoothService {
-
-  public connected: boolean;
-  public initialized: boolean;
-  public connectedUUID: string;
   public requestStream: Observable<bluetooth.ReadResult>;
-  public isStreaming: boolean;
 
+  private connectedUUID: string;
   private scanTime = 5; // seconds
 
   constructor() {
@@ -30,19 +26,28 @@ export class BluetoothService {
   /**
    * Scans for nearby bluetooth sensors
    */
-  public connect(item: bluetooth.Peripheral): void {
-    bluetooth.connect({
-      UUID: item.UUID,
-      onConnected: (peripheral) => {
-        this.connectedUUID = item.UUID;
-        this.connected = true;
-        this.setup();
-      },
-      onDisconnected: (peripheral) => {
-        this.connectedUUID = null;
-        this.connected = false;
-        console.log("disconnected");
-      },
+  public connect(item: bluetooth.Peripheral): Observable<boolean> {
+    return Observable.create((observer: Observer<boolean>) => {
+      bluetooth.connect({
+        UUID: item.UUID,
+        onConnected: (peripheral) => {
+          this.setup(item.UUID).then(() => {
+            observer.next(true);
+          }).catch((err) => {
+            observer.next(false);
+          });
+        },
+        onDisconnected: (peripheral) => {
+          observer.next(false);
+        },
+      });
+      return (() => {
+        const options: bluetooth.DisconnectOptions = {
+          UUID: item.UUID,
+        };
+        bluetooth.disconnect(options);
+        observer.complete();
+      });
     });
   }
 
@@ -84,20 +89,14 @@ export class BluetoothService {
    * Configures accelerometer to 16G +-
    * Sets the resolution speed to 100ms
    */
-  public setup() {
-    if (this.connectedUUID) {
-      console.log("INITIALIZING SENSOR");
-      this.initializeAccelerometer().then((result) => {
-        console.log("Accelerometer value written");
-        this.initializeResolution().then((result) => {
-          console.log("Resolution value written");
-        }).catch((err) => {
-          console.log("Resolution write error: " + err);
-        });
-      }).catch((err) => {
+  public setup(UUID: string): Promise<any> {
+    this.connectedUUID = UUID;
+    return this.initializeAccelerometer()
+      .then(() => this.initializeResolution(), (err) => {
         console.log("Accelerometer write error: " + err);
+      }).catch((err) => {
+        console.log("Resolution write error: " + err);
       });
-    }
   }
 
   /**
@@ -140,13 +139,12 @@ export class BluetoothService {
    * Creates observable that calls read every 500 ms
    */
   private createObservable(): Observable<bluetooth.ReadResult> {
-    let config: IServiceCharacteristics = {
+    const config: IServiceCharacteristics = {
       serviceUUID: "f000aa80-0451-4000-b000-000000000000",
       characteristicsUUID: "f000aa81-0451-4000-b000-000000000000",
     };
 
     return Observable.create((observer: Observer<bluetooth.ReadResult>) => {
-      this.isStreaming = true;
       const clock = Timer.setInterval(() => {
 
         this.read(config)
@@ -158,11 +156,8 @@ export class BluetoothService {
 
       return (() => {
         Timer.clearInterval(clock);
-        console.log("DISPOSED!!!!!!!");
-        this.isStreaming = false;
         observer.complete();
       });
-
     });
   }
 }
