@@ -1,0 +1,38 @@
+<rom-base-view>
+
+  <GridLayout rows="auto, *, auto" columns="*, auto">
+
+    <StackLayout row="0" colSpan="2" class="stats" orientation="horizontal">
+      <rom-tile text="Total records" value="10260"></rom-tile>
+      <rom-tile text="Active users" value="89"></rom-tile>
+      <rom-tile text="Total users" value="500"></rom-tile>
+    </StackLayout>
+
+    <RadCartesianChart row="1" rowSpan="2" col="0" class="stroke-chart">
+      <CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
+      <LinearAxis tkCartesianVerticalAxis></LinearAxis>
+
+      <SplineSeries tkCartesianSeries seriesName="X" stackMode="Stack" [items]="source" categoryProperty="Time"
+        valueProperty="X">
+      </SplineSeries>
+
+      <SplineSeries tkCartesianSeries seriesName="Y" stackMode="Stack" [items]="source" categoryProperty="Time"
+        valueProperty="Y">
+      </SplineSeries>
+
+      <SplineSeries tkCartesianSeries seriesName="Z" stackMode="Stack" [items]="source" categoryProperty="Time"
+        valueProperty="Z">
+      </SplineSeries>
+
+    </RadCartesianChart>
+
+    <StackLayout row="2" col="1" class="buttons side-layout" orientation="vertical">
+      <ContentView class="side-tile">
+        <rom-tile text="Last active" value="2d"></rom-tile>
+      </ContentView>
+      <Button text="Start" (tap)="connect()"></Button>
+    </StackLayout>
+
+  </GridLayout>
+
+</rom-base-view>

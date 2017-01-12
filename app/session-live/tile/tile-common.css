@@ -1,0 +1,24 @@
+.frame {
+  background-color: #ed8775;
+  margin: 10;
+  padding-top: 10;
+  padding-bottom: 10;
+  padding-left: 20;
+  padding-right: 20;
+}
+
+.text, .value {
+  horizontal-align: center;
+}
+
+.text {
+  margin-top: 10;
+  font-size: 16;
+  text-transform: uppercase;
+}
+
+.value {
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  font-size: 24;
+}

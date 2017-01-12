@@ -30,6 +30,6 @@ export class BluetoothDetailsComponent implements OnInit {
    */
   public start(): void {
     this.sessionService.startCurrentSession();
-    this.router.navigate(["startedSessions"]);
+    this.router.navigate(["session-live"]);
   }
 }
