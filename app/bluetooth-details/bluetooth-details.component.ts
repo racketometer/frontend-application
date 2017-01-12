@@ -29,8 +29,7 @@ export class BluetoothDetailsComponent implements OnInit {
    * Start session.
    */
   public start(): void {
-    //  this.bluetoothService.connect(this.racket);
-    // this.sessionService.startCurrentSession();
+    this.sessionService.startCurrentSession();
     this.router.navigate(["session-live"]);
   }
 }
